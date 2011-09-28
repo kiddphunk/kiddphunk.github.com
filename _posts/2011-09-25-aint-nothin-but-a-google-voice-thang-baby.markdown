@@ -13,7 +13,7 @@ image: /images/projects/gvthang/gvthang.jpg
 bottomimage: /images/projects/gvthang/gvthangdetail.jpg
 track: /images/projects/gvthang/Nothin'%20but%20a%20'G(oogle%20voice)'%20Thang.mp3
 tracknote: Not quite there.
-shoutout: "I propose this as a standard test for end-to-end voice recognition to &#10145; speech synthesis: The 'G' Thang Benchmark."
+shoutout: "I propose this as a standard test for end-to-end speech recognition to &#10145; speech synthesis: The 'G' Thang Benchmark."
 sitename: kiddphunk
 fbcomments: true
 halfsize: true
@@ -29,11 +29,11 @@ I love Google Voice. Admittedly, I primarily use it (and GrandCentral before tha
 
 Around Christmas 2009 I got the urge to call up my Google Voice number and leave a message to see how it would translate the 'a cappella' version of [*Nothin' but a 'G'Thang*](http://en.wikipedia.org/wiki/Nuthin'_but_a_'G'_Thang). 
 
-**The way I see it, there must come a time when not only will this be perfectly translatable, I might receive voice-analysis  meta-data along with the transcription indicating that indeed, Snoop and Dre just left a message for me. **
+**The way I see it, there must come a time when not only will this be nearly translatable, but I might receive voice-analysis  meta-data along with the transcription indicating that indeed, Snoop and Dre just left a message for me. **
 
 **I could then take the high-fidelity transcription and use it to generate a high-fidelity vocal rendering, using a pair of $.99-cent voice-synthesis packs I purchased on iTunes that provide me with accurate vocal emulations of the two famous MCs.**
 
-**Drop the generated vocals over the original instrumental track and compare to the original track from 1993. I propose this as a standard test for end-to-end voice recognition to &#10145; speech synthesis: <em>The 'G' Thang Benchmark.</em>**
+**Finally I drop the generated vocals over the original instrumental track and compare to the original track from 1993. I propose this as a standard test for end-to-end speech recognition to &#10145; speech synthesis: <em>The 'G' Thang Benchmark.</em>**
 
 
 Alas, the days of Snoop reading us our morning newsfeeds is far away; for the most part [the translation](/images/projects/gvthang/GV_translation_orig.rtf) is a far cry from [the original](/images/projects/gvthang/orig_words_raw.txt), although there are some funny interpretations:
