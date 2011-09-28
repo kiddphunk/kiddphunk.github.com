@@ -1,0 +1,31 @@
+
+#delicious .tocframe {
+  background-image: url(delicious0.png);
+	width:1000px;
+	height:350px;
+    
+}
+
+#delicious .toclite h3 {
+color: #ffffff;
+margin-top:100px;
+text-transform: uppercase;
+height:350px;
+text-align:bottom;
+}
+#delicious .toclite h4 {
+color: #ffffff;
+margin-top:100px;
+text-transform: uppercase;
+}
+
+
+#delicious .toctext {
+background-color:#68006b;
+margin-top:302px;
+padding-top: 6px;
+padding-left: 12px;
+height:24px;
+	width:500px;
+
+}

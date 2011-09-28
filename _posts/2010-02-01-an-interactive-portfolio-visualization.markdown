@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: an interactive portfolio visualization
 layout: project
 category: projects

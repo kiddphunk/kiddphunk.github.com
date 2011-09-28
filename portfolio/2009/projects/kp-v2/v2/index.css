@@ -1,0 +1,168 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #CCCCCC;
+  	background-color: #eeeeee;
+	margin-top: 135px;
+	background-repeat: repeat;
+    background-image:url("images/bg.jpg");
+}
+
+a, a:hover, a:visited, a:active, a:link {
+	font-family: Helvetica, sans-serif, verdana, arial;
+	font-size: 12px;
+	color: #6666ff;
+	border-bottom:1px dotted #6666aa;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+a:hover {
+	color: #6666ff;
+	border-bottom:1px solid #ffffff;
+	text-decoration:none;
+}
+
+img {
+/*xxx
+	padding-bottom:1px;
+	*/
+	border-bottom:5px solid #ddd;
+}
+
+.img2 {
+	padding-bottom:0px;
+	border-bottom:0px solid #ddd;
+}
+
+a:hover img {
+/* xxx
+	padding-bottom:1px;
+	*/
+	border-bottom:5px solid #ddf;
+}
+
+a:hover .img2 {
+	border-bottom:5px solid #fff;
+}
+
+
+.logospace {
+height: 10px;
+	background-attachment: fixed;
+/*
+margin-bottom:3px;
+    background-image:url("logominilight4.jpg");
+    */
+}
+
+a:hover .logospace {
+height: 10px;
+margin-top:10px;
+margin-right:-9px;
+margin-bottom:3px;
+width: 20px;
+float:right;
+    background-image:url("images/logominilight3.jpg");
+	background-attachment: scroll;
+}
+
+.datetext, 
+.datetextlight,
+.datetextsmall {
+	font-family: Helvetica, sans-serif, verdana, arial;
+	font-size: 16px;
+	padding-left:10px;
+	padding-bottom:8px;	
+	padding-top:5px;
+	color: #999;
+    line-height:1.2em;
+    float:left;
+	border-top:1px dotted #ccc;
+}
+
+
+.datetext {
+	padding-top:7px;	
+}
+
+.datetextlight {
+	border-top:0px solid #ddd;
+	font-size: 12px;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:9px;	
+	color: #aaa;
+    float:left;	
+    line-height:1.2em;
+}
+
+a:hover .datetext {
+	border-top:1px solid #ddf;
+	padding-top:4px;
+}
+
+
+.full {
+width:135px;
+	height:260px;
+	border:0px;
+	position:relative;
+	top:0px;
+	margin:0px;
+	z-index:10;
+}
+.anchorbox {
+	width:33px;
+	height:317px;
+	border:0px solid #eee;
+	float:left;
+	z-index:15;
+}
+
+a .box2, a:hover .box2, a:visited .box2, a:active .box2, .box2,
+a .box, a:hover .box, a:visited .box, a:active .box, .box {
+/*xxx
+	width:135px;
+	*/
+	width:133px;
+	height:133px;
+	height:305px;
+	float:left;
+	background-color:#fff;
+	z-index:11;
+	border:1px solid #ddd;
+	float:left;
+	cursor: pointer;
+}
+
+a:hover .box {
+	border-bottom:10px solid #9db8b7;
+	border-bottom:10px solid #ddf;
+}
+
+a:hover .box2 {
+	border-bottom:10px solid #6451ff;
+	border-bottom:10px solid #ddf;
+}
+
+.toparea {
+	height:400px;
+	width:400px;
+	border:0px solid #ccc;
+}
+
+.infobox {
+/*xxx
+	width:305px;
+	*/
+	width:301px;
+	height:31px;
+	border:0px solid #ddd;
+	float:left;
+	background-color:#fff;
+	z-index:20;
+	margin-top:56px;
+	border:1px solid #ddd;
+	cursor: default;
+}
