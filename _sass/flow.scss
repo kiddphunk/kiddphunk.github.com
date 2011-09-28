@@ -275,6 +275,9 @@ a img {
     .postinfo.generic {
         top:-162px;        
     }
+    #halfsize .postinfo {
+        top:-165px;        
+    }    
     .postinfo span {
         right:0;
         top:20px;
@@ -928,7 +931,9 @@ a .indeximg {
     width:760px; 
     height:125px;
 }
-
+.halfsize {
+    height:125px;    
+}
 
 $headerThinHeight: 150px;
 @mixin headerthin {
@@ -1371,4 +1376,16 @@ em {
         margin-right:-8px;
         width:200px;
     }
+}
+pre code {
+    background-color:#5c3030;
+    color:white;
+    font-size:14px;    
+}
+.cp-container {
+    margin-left:29px;
+}
+.trackcomment {
+    width:100%;
+    text-align:right;
 }

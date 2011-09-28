@@ -1,7 +1,7 @@
    <li class='post'>
        <a href="{{ post.url }}#article">
-           {% if post.image %}
-             <img class='indeximg' src='{{post.image}}' style="border-top:0px solid #{{post.bgcolor}}">
+           {% if post.image %}           	
+             <img class='indeximg {% if post.halfsize %}halfsize{%endif%}' src='{{post.image}}' style="border-top:0px solid #{{post.bgcolor}}">
            {% else %}
              <div class='genericimg' style="border-top:0px solid #{{post.bgcolor}}"></div>
            {% endif %}

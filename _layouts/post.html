@@ -15,9 +15,9 @@ layout: flow
 
 
       <ul class="isoContent">
-          <li class='post'>            
+          <li class='post' id='{% if page.halfsize %}halfsize{%endif%}'>
               {% if page.image %}
-                <img class='mainimage' src='{{page.image}}'>
+                <img class='mainimage {% if page.halfsize %}halfsize{%endif%}' src='{{page.image}}'>
               {% else %}
                 <div class='genericimg'></div>
               {% endif %}

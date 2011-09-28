@@ -270,6 +270,9 @@ a img {
 .singlepost .postinfo.generic {
   top: -162px;
 }
+.singlepost #halfsize .postinfo {
+  top: -165px;
+}
 .singlepost .postinfo span {
   right: 0;
   top: 20px;
@@ -1007,6 +1010,10 @@ a .indeximg {
   height: 125px;
 }
 
+.halfsize {
+  height: 125px;
+}
+
 /*
  * kiddphunk.com
  */
@@ -1484,4 +1491,19 @@ em {
     margin-right: -8px;
     width: 200px;
   }
+}
+
+pre code {
+  background-color: #5c3030;
+  color: white;
+  font-size: 14px;
+}
+
+.cp-container {
+  margin-left: 29px;
+}
+
+.trackcomment {
+  width: 100%;
+  text-align: right;
 }
