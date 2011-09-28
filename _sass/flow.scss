@@ -229,13 +229,12 @@ a img {
 	float:left;
 	width: $landscapeWidth;
     background: url('/images/footer.png');
-    height:86px;
     @include backgroundFull;
     background-size: contain;
 
     /* temporary */
     background:#000;
-    height:64px;
+    height:80px;
 }
 #footer p {
 	padding:20px 30px;
@@ -317,11 +316,7 @@ a img {
 	#wrap,
 	#footer {
 		width: $portraitWidth;
-	}
-	#footer {
-	    height:64px;
-	}
-		
+	}		
 	.post {
 	    margin-left:0px;
 	}

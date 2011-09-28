@@ -195,7 +195,6 @@ a img {
   float: left;
   width: 1024px;
   background: url("/images/footer.png");
-  height: 86px;
   -moz-background-size: cover;
   background-size: cover;
   background-attachment: scroll;
@@ -204,7 +203,7 @@ a img {
   background-size: contain;
   /* temporary */
   background: #000;
-  height: 64px;
+  height: 80px;
 }
 
 #footer p {
@@ -314,10 +313,6 @@ a img {
   #wrap,
   #footer {
     width: 768px;
-  }
-
-  #footer {
-    height: 64px;
   }
 
   .post {
