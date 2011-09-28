@@ -15,9 +15,7 @@ shoutout: "I finally decided to recast my resume with more data visualization&md
 sitename: kiddphunk
 fbcomments: false
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
-
-
+<img class='feedimg' src='{{page.topimage}}'>
 
 Every few years I will pull up my previous resume and perform the typical update with my latest jobs, skills, etc. I have always maintained a one-page resume; as new skills are acquired and pockets of specializations form and disperse, I take it as an information design challenge to concisely depict what exactly it is that I do.
 

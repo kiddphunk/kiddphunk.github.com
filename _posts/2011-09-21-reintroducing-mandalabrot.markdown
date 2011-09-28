@@ -20,11 +20,7 @@ bottomimage: /images/projects/sheep/sheepdetail.jpg
 topnote: ""
 shoutout: ""
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
-
-
-
-
+<img class='feedimg' src='{{page.topimage}}'>
 
 http://www.subblue.com/blog/2009/7/14/fractal_explorer
 

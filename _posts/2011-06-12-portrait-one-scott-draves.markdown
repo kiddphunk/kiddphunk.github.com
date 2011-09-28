@@ -20,8 +20,7 @@ shoutout: "The mosaic was generated from a selection of over 10,000 seed images;
 sitename: kiddphunk
 fbcomments: true
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
-
+<img class='feedimg' src='{{page.topimage}}'>
 
 [View the full-sized poster](http://gigapan.org/gigapans/fullscreen/79494)
 

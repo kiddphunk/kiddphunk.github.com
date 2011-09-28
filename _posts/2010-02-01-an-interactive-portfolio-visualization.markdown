@@ -19,7 +19,7 @@ shoutout: ""
 sitename: kiddphunk
 fbcomments: false
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
+<img class='feedimg' src='{{page.topimage}}'>
 
 [Launch portfolio](/portfolio/2009/)
 

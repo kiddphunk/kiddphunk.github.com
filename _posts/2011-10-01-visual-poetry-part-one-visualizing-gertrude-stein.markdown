@@ -19,6 +19,6 @@ aboutpage: true
 sitename: kiddphunk
 fbcomments: true
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
+<img class='feedimg' src='{{page.topimage}}'>
 
 Coming very soon.

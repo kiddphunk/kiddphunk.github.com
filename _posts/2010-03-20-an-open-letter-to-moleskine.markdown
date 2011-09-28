@@ -13,7 +13,6 @@ shoutout: "Please provide a notebook for those of us with fairly balanced right 
 sitename: kiddphunk
 fbcomments: false
 ---
-
 Dear Moleskine,
 
 I am a huge fan of your notebooks &ndash; a quad rule notebook or two have been a constant companion for many years, collecting countless ideas and sketches along the way.
