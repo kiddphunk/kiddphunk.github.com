@@ -13,7 +13,6 @@ shoutout: "Please provide a notebook for those of us with fairly balanced right 
 sitename: kiddphunk
 fbcomments: false
 ---
-<img class='feedimg' src='{{page.topimage}}'><br>
 
 Dear Moleskine,
 
