@@ -4,6 +4,6 @@ Add tribalpixel, galactivision sites with pictures and music
 
 Add chartbeat metrics
 
-Verify feedburner working
+Verify feedburner working - both cnamed sites
 
 Verify google analytics working

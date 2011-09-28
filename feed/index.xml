@@ -5,10 +5,10 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>beats, pixels, code, life | a blog by Ian Timourian</title>
- <link href="http://beatspixelscodelife.com/feed/" rel="self"/>
- <link href="http://beatspixelscodelife.com/"/>
+ <link href="http://kiddphunk.com/feed/" rel="self"/>
+ <link href="http://kiddphunk.com/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://beatspixelscodelife.com/</id>
+ <id>http://kiddphunk.com/</id>
  <author>
    <name>beats, pixels, code, life</name>
  </author>
@@ -16,9 +16,9 @@ layout: nil
  {% for post in site.posts %}
  <entry>
    <title>{{ post.title }}</title>
-   <link href="http://beatspixelscodelife.com{{ post.url }}"/>
+   <link href="http://kiddphunk.com{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://beatspixelscodelife.com{{ post.id }}</id>
+   <id>http://kiddphunk.com{{ post.id }}</id>
    <content type="html">	
 	{{ post.content | xml_escape }}</content>
  </entry>

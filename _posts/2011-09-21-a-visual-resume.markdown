@@ -12,7 +12,7 @@ tools: [Photoshop]
 bgcolor: 00ae00
 image: /images/projects/resume/resume.jpg
 topimage: /images/projects/resume/ian_timourian_resume_Fall2011mini.jpg
-topimagelink: /resume/ian_timourian_resume_Fall2011.png
+topimagelink: http://beatspixelscodelife.com/resume/ian_timourian_resume_Fall2011.png
 bottomimage: /images/projects/resume/resumedetail.jpg
 shoutout: "I finally decided to recast my resume with more data visualization&mdash;I am, after all, an Information Visualist."
 sitename: kiddphunk
@@ -29,9 +29,9 @@ Every few years I will pull up my previous resume and perform the typical update
 Since around 2004 or so I have maintained two resumes: 
 
 
-* a [traditional black/white](/resume/ian_timourian_resume_0109.pdf) (admittedly *laboriously* designed)
+* a [traditional black/white](http://beatspixelscodelife.com/resume/ian_timourian_resume_0109.pdf) (admittedly *laboriously* designed)
 
-* a [visual timeline](/resume/ian_timourian_visual_resume_0109.jpg), depicting programming languages, location, work, etc.
+* a [visual timeline](http://beatspixelscodelife.com/resume/ian_timourian_visual_resume_0109.jpg), depicting programming languages, location, work, etc.
 
 
 While the former was what I sent around when needed, it is the latter format that I always thought had the potential for far more stories to tell. 
