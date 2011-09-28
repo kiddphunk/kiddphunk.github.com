@@ -1,0 +1,1378 @@
+@import "compass";
+
+$portraitWidth:  768px;
+$landscapeWidth: 1024px;
+
+
+@mixin cover {
+    -moz-background-size: cover;
+    background-size: cover;    
+}
+@mixin contain {
+    -moz-background-size: contain;
+    background-size: contain;        
+}
+
+@mixin backgroundFull {
+    @include cover;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;    
+}
+
+@mixin darkscreen {
+    background: url(../images/darkscreen.png);    
+    background-attachment:fixed;
+/*    background: #333;*/
+}
+
+@mixin litescreen {
+    background: #fff;
+    background: url(../images/litescreen.png);    
+    background-attachment:fixed;
+}
+
+@mixin textreset {
+    text-decoration:none;
+    font-weight:normal;    
+}
+
+@mixin floweroflife {
+    background-image: url(../images/bgFOL1.png);
+    background-color: #fff;
+    background-repeat: repeat;
+/*    background-attachment:fixed;*/    
+}
+
+@mixin wrapper {
+    background-color:#111;
+}
+
+@mixin noborderpadding {
+    border:0;
+    padding:0;    
+}
+
+@mixin pointer {
+    cursor:pointer;    
+}
+
+/*
+ *
+ *
+ * See http://matthewjamestaylor.com/blog/ipad-layout-with-landscape-portrait-modes for the base layout idea.
+ *
+ */
+
+
+* {
+	margin:0;
+	padding:0;
+}
+h2 {
+	padding:1em 0 0 0;
+}
+p {
+	line-height:1.4em;
+}
+p + p {
+}
+body {
+	font-size:100%;
+	text-align:center;
+	background:#000;
+}
+pre {
+	display:block;
+	margin:1em 0 0 0;
+	width:488px;
+}
+pre code {
+	background:#eee;
+	display:block;
+	padding:10px;
+}
+.r {
+	float:right;
+	padding:0 0 10px 20px;
+}
+a {
+    color:#138fe2;
+}
+a img {
+    border: solid 2px #138fe2;
+    padding: 2px;
+    margin-left:-4px;
+}
+#ccl {
+   padding-top:10px;
+}
+
+/* Landscape mode (default) */
+
+#wrap {
+    @include wrapper;
+	margin:0 auto;
+	width: $landscapeWidth;
+	position:relative;
+	overflow:hidden;
+	text-align:left;
+}
+#indexpagefull #wrap {
+    @include backgroundFull;
+    @include darkscreen;    
+}
+.toc1, .toc2 {
+    padding-top:3px;
+    padding-left:16px;
+    padding-bottom:5px;
+    padding-right:12px;
+    color:#aaa;
+}
+.toc2 {
+/*    margin-top:-24px;*/
+}
+
+/*header 200px*/
+
+.root {
+  	background:#fff;	   
+  	background-color:rgba(255,255,255,.6);
+}
+#header {
+	float:left;
+	width: $landscapeWidth;
+	padding:10px 0 20px 0;
+    h1 {
+	    padding:10px 30px 0 30px;
+    }
+    p {
+	    padding:0 30px;
+	    line-height:1.4em;
+	}
+	a h3 {
+	    padding:0;
+	    margin:0;
+	    float:right;
+	    display:inline;
+	    position:relative;
+	    top:20px;
+	}
+}
+#outercontent {
+	float:left;
+	width: $landscapeWidth;
+	left: $portraitWidth;
+	position:relative;
+}
+#wrapper {
+    height:600px;
+	width:100%;
+	float:left;
+	padding:0;
+	overflow:hidden;
+}
+
+
+#main {
+	float:left;
+	width: $portraitWidth;
+	position:relative;
+	right: $portraitWidth;
+	padding:0;
+    padding-left:4px;
+	overflow:hidden;
+}
+.side {
+	float:right;
+	width:216px;
+	position:relative;
+	right:788px;
+	padding-bottom:20px;
+
+    h2 {
+        margin-bottom:0px;
+        text-align:left;
+    }
+    p {
+        text-align:left;
+    }	
+}
+.side1a,
+.side1b,
+.side1c,
+.side2a,
+.side2b,
+.side2c,
+.sidea,
+.sideb,
+.sidec {
+	clear:left;
+	float:left;
+	width:216px;
+}
+.sidea {
+    h1 {
+        color:#666;
+    }
+}
+.sideb {
+    h1 {
+        color:#666;
+    }
+    h2 {
+        padding-bottom:10px;
+    }
+}
+#footer {
+	clear:both;
+	float:left;
+	width: $landscapeWidth;
+    background: url('/images/footer.png');
+    height:86px;
+    @include backgroundFull;
+    background-size: contain;
+
+    /* temporary */
+    background:#000;
+    height:64px;
+}
+#footer p {
+	padding:20px 30px;
+}
+
+.post {
+    @include border-radius(0);
+    width: $portraitWidth;
+    float:left;
+    margin-left:-4px;
+}
+@mixin postinfo {
+    color:white;
+    height:28px;
+    top:-46px;
+    display:block;
+    float:right;
+    padding:5px;
+    padding-top:4px;
+    padding-right:10px;
+    position:relative;
+    @include border-radius(4px);   
+}
+
+.postinfo {
+    @include postinfo;
+    right:18px;
+    top:-46px;
+}
+
+.singlepost {
+    .postinfo {
+        @include postinfo;
+        @include border-radius(4px 4px 0 0);
+        right:8px;
+        top:-292px;
+    }
+    .postinfo.generic {
+        top:-162px;        
+    }
+    .postinfo span {
+        right:0;
+        top:20px;
+    }
+    .post {
+        margin-top:40px;
+    }
+    .innerpostcontent {
+        margin-top: -26px;
+    }    
+}
+#aboutimgs {
+    text-align:center;
+    padding-left:32px;
+    margin-top:20px;
+    width:100%;
+    img {
+        margin-left:6px;
+        margin-right:11px;
+        margin-bottom:70px;
+        float:left;
+        display:inline;
+    }
+}
+.fb-comments {
+    float:right;
+}
+
+@media only screen and (orientation:portrait){
+    .postinfo {
+        right:10px;
+    }
+    .toc2 {
+/*        margin-top:-40px;*/
+    }
+
+	/* portrait mode */
+	#header,
+	#wrap,
+	#footer {
+		width: $portraitWidth;
+	}
+	#footer {
+	    height:64px;
+	}
+		
+	.post {
+	    margin-left:0px;
+	}
+	#wrap {
+        @include backgroundFull;
+	}
+    .root {
+      	background:#fff;	   
+      	background-color:rgba(255,255,255,.6);
+    }
+	#outercontent {
+		left:0;
+	}
+	#main {
+		float:left;
+		width: $portraitWidth;
+		position:relative;
+		right:0;
+		left:0;
+		padding:0;
+	    padding-left:4px;
+		overflow:visible;
+	}
+	.side {
+		clear:left;
+		float:left;
+		width: $portraitWidth;
+		right:0;
+		padding-bottom:20px;
+		background:#eee;
+	}
+	
+	.side1a,
+	.side2a,
+	.sidea {
+	    background-color:#000;
+		position:relative;
+		clear:none;
+		left:30px;
+		padding-top:8px;
+		padding-bottom:8px;
+	}
+	.side1b,
+	.side2b,
+	.sideb {
+	    @extend .sidea;
+		left:60px;
+	}
+	.side1b,
+	.side2b,
+	.sidec {
+	    @extend .sidea;
+		left:0px;
+		float:right;
+		margin-right:30px;
+	}
+    .side {
+        background-color:#111;
+        h2 {
+            margin-bottom:0px;
+            text-align:center;
+        }
+        p {
+            text-align:center;
+        }
+    }
+    .post {
+        width:760px;
+    }
+    .postcontent {
+        width: $portraitWidth;
+    }
+    .singlepost .postinfo {
+        right:0px;
+    }
+}
+/*
+ End CSS template, modified.
+*/
+
+
+/*
+ *
+ */
+body {
+    color: #fff;
+	font-size:12px;
+    font-family:    "HelveticaNeue-Light", "Helvetica Neue", Helvetica,  "report-1","report-2", Arial, sans-serif;
+/*
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;    
+*/    
+}
+ 
+.beats {
+    color:#ff6600;
+}
+.pixels {
+    color:#ff0080;    
+}
+.code {
+    color:#00aaea;
+}
+.life {
+    color:#00f300;    
+}
+ 
+#bodyscreen {
+    @include darkscreen;
+    @include cover;
+}
+ 
+.rootWrapper {
+    @include floweroflife;
+}
+
+.screen {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    @include cover;
+    @include border-radius(0);
+} 
+
+.post .innerWrapper {    
+    @include border-radius(0);
+    position:relative;
+}
+
+
+.postinfo {
+    font-family: "GSL";
+    font-family: "HNBC";
+    font-family: "AURORA";        
+    font-family: "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "anisette-petite-sc-1","anisette-petite-sc-2";
+    font-family: "report-1", "report-2", 'AURORA', 'andale mono', 'lucida console', monospace;       
+    font-family: "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-rendering: optimizelegibility;
+    color: #fff;    
+    
+    span {
+        text-transform: uppercase;
+        font-size:20px;
+        padding-left:15px;
+        padding-right:5px;
+        top:20px;
+    }    
+    a {
+        @include textreset;
+        color: #fff;    
+        font-size:20px;    
+        padding-left:10px;
+        padding-right:15px;
+        top:10px;
+    
+        &:hover {
+    	    text-decoration:underline;        
+        }
+    }
+}
+.shoutout {
+    font-weight:bold;
+    padding-right:10px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.postcontent {
+	padding:5px;
+	width:750px;
+    height:100%;
+    top:-42px;
+    overflow:hidden;
+    position:relative;
+    
+    p {
+        font-size:1.5em;        
+    }
+}
+.innerpostcontent {
+    background-color:white;
+    @include border-radius(0px);
+	left:4px;
+	width:100%;
+	color:#000;
+
+    .shoutoutframe {
+
+        .shoutout {
+            background: url(../images/boxquote.png);
+            font-size:1.5em;
+        }
+    }
+
+    h5 {
+        padding-left: 0;
+        margin-top:10px;
+        color:#999;
+        text-transform:uppercase;
+    }    
+}
+
+.tagindex,
+.categoryindex,
+.indexpage {
+    .indexSizeUp {
+        margin-bottom:-10px;
+        margin-right:-10px;
+    }
+    .innerpostcontent {
+        @include border-radius(4px);    
+    }
+    .post {
+        margin-bottom:-42px;
+    }
+    .postcontent {
+        width: 760px;
+        padding: 0px;
+        margin-bottom:50px;
+    }
+    .shoutout p {
+/*        font-weight:normal;*/
+        font-size:.9em;
+        padding: 0px;
+        padding-top:5px;
+        padding-bottom:5px;
+        margin-left:50px;
+        margin-right:50px;
+        margin-bottom:0px;
+    }
+    .shoutoutframe {
+        margin-right:0px;
+    }
+    .shoutout {
+        text-align:center;
+        padding-right:0px;
+        margin-top:5px;
+        margin-bottom:5px;
+        font-size:1.2em;   
+    }
+}
+
+.container {
+    @include border-radius(4px);
+    width:750px;
+    margin:0;
+    padding-bottom:0px;
+}
+
+
+
+
+
+/*
+ * Font definitions
+ * ----------------
+ *
+ */
+
+@font-face {
+    font-family: "GSL";
+    src: local("GSL"), url('testfonts/GSL.ttf') format("truetype"); 
+}
+@font-face {
+    font-family: "HNBC";
+    src: local("HNBC"), url('testfonts/HNBC.otf') format("truetype"); 
+}
+@font-face {
+    font-family: "AURORA";
+    src: local("AURORA"), url('testfonts/AURORA.ttf') format("truetype"); 
+    text-shadow:rgba(0,0,0,0.01) 0 0 0;
+}
+
+
+
+/*
+ * BPCL Header Styles
+ * ------------------
+ *
+ */
+
+ul,li {
+	padding:0;
+	margin:0;
+	border:0;
+}
+li {
+    height:100%;
+}
+h1, h2, h3 {
+    @include textreset;
+    font-family: "report-1", "report-2", 'AURORA', 'andale mono', 'lucida console', monospace;       
+    font-family: "anisette-petite-sc-1","anisette-petite-sc-2";
+    font-family: "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:20px;
+}
+h3 {
+    font-size:25px;
+    margin-left:20px;
+}
+
+#content h2,
+#content h3 {
+    font-size:20px;
+    font-weight:normal;        
+    padding-left:10px;
+}
+
+#content h2 {
+    display:inline;
+}
+#content h3 {
+    display:inline;
+}
+
+
+
+
+
+
+#iamintro {
+    font: 20px "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial;
+    color: #ddd;
+    text-align: center;
+    padding:5px;
+}
+.n1 {
+    text-transform: uppercase;
+    color: #fad1df;
+}
+.n2 {
+    text-transform: uppercase;
+    color: #fad8c8;
+}
+.v1 {
+    text-transform: uppercase;
+    color: #d8f2cc;
+}
+.v2 {
+    text-transform: uppercase;
+    color: #d0eaf9;
+}
+.a1 {
+    text-transform: uppercase;
+    color: #ffccff;
+}
+
+
+.infltitle {
+    @include opacity(.8);
+    z-index: 1200;
+    position:relative;
+    top:40px;
+    padding:2px;
+    background-color:#000;
+    color:#fff;
+    
+    a {
+        text-decoration:none;
+        color:#fff;        
+    }
+}
+.infltitle2 {
+    @extend .infltitle;
+    background-color:#333;
+    color:#fff;
+}
+
+
+
+.rightbump {
+    overflow:visible;
+    margin-left:30px;
+    border:0px solid blue;
+}
+.addthis_button_hackernews {
+    height:18px;
+    width:18px;
+    padding-right:12px;
+}
+.addthis_button_google_plusone {
+    margin-top:-2px;    
+}
+.addthis_button_tweet {
+    margin-top:-2px;
+}
+.fb-like {
+    margin-top:-3px;
+    float:left;
+}
+.addthis_toolbox {
+    float:left;
+}
+.righttext {
+    text-align:right;
+}
+
+.fullbox {
+    overflow:hidden;
+    width:750px;
+    height:250px;
+    margin-left:0px;
+}
+h5 {
+    padding-left: 1.5em;
+}
+.box {
+    .large {
+        line-height:1.9em;
+        font-size:1.2em;
+    }
+}
+
+.typekit-badge {
+    visibility:hidden;
+}
+.toolbox {
+    padding:1.5em;
+    padding-top:10px;
+    padding-bottom:15px;
+    margin-bottom:100px;
+    background-color:#eeffee;
+    color:white;
+    @include border-radius(0 0 4px 0);
+
+    a {
+        text-transform:uppercase;
+        text-decoration:none;
+        color:white;
+        float:left;
+        padding-right:5px;
+        font-size:11px;
+    }
+    h5 {
+        margin-left:-10px;
+        padding-left:0px;
+        padding-bottom:0px;
+        margin-bottom:0px;
+        margin-top:0px;
+        padding-top:15px;
+        clear:left;
+        color:#fff;
+    }
+    h5:first-child {
+        padding-top:0px;        
+    }
+    .pressitem {
+        text-transform:uppercase;
+        font-size:10px;
+        text-align:right;
+        width:100%;
+        height:13px;
+        border-bottom:solid 1px #fff;
+        border-bottom:solid 1px rgba(255,255,255,.5);
+        margin-bottom:10px;        
+        margin-top:0px;
+    }
+}
+.spanimage {
+    width:750px;
+    margin-left:-280px;
+}
+.justleft {
+    text-align:left;
+}
+.justright {
+    text-align:right;
+    margin-right:-5px;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-right:15px;
+    padding-left:15px;
+    margin-top:80px;
+}
+.topnote {
+    color:#aaa;
+    font-style:italic;
+    padding-top:8px;
+    
+    p {
+        font-size:15px;
+    }
+}
+.bottomnote {
+    p {
+        font-size:15px;
+    }    
+}
+.mainimage {
+    height:250px;
+    width:760px;
+}
+
+.topimage {
+    margin-top:45px;
+    -moz-background-size: cover;
+    background-size: cover;        
+    -moz-background-size: contain;
+    background-size: contain;        
+    width:420px;
+}
+
+#overlay {
+    width:100%;
+    height:100%;
+    display:hidden;
+    z-index:20000;
+}
+
+div.contentWrap {
+    background-color:white;
+    width:100%;
+    height:100%;
+}
+
+/*
+#overlay {
+    background-image:url(../images/transparent.png);
+    color:#efefef;
+    width:100%;
+    height:100%;
+}
+
+div.contentWrap {
+    height:441px;
+    overflow-y:auto;
+}
+
+.apple_overlay {
+    display:none;
+    background-image:url(../images/white.png);
+    width:640px;        
+    padding:35px;
+    font-size:11px;
+}
+
+.apple_overlay .close {
+    background-image:url(../images/close.png);
+    position:absolute; right:5px; top:5px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+*/
+
+
+
+.badgeWrapper {
+    position:relative;
+    margin-top:-255px;
+    margin-bottom:0px;
+    overflow:hidden;
+    width:140px;
+    height:250px;
+}
+
+.github,
+.comingsoon {
+  left: -65px;
+  height: 30px;
+  top: 40px;
+  position: absolute;
+  text-decoration: none;
+  width: 250px;
+  @include rotate(-45deg);
+  span {
+    background: #6666cc;
+    color: white;
+    font-size: 14px;
+    left: 0;
+    padding: 5px 0;
+    position: absolute;
+    text-align: center;
+    width: 250px;
+    @include box-shadow(rgba(black, 0.2) 1px 1px 10px);
+    // If you’re using Compass < 0.11 use this:
+    // @include box-shadow(rgba(black, 0.2), 1px, 1px, 10px);
+    @include transition(opacity, 1s);
+    &:last-child {
+      /* this is the backside */
+      background: #339933;
+      opacity: 0;
+    }
+  }
+  :hover span {
+    &:first-child {
+      opacity: 0;
+    }
+    &:last-child {
+      opacity: 1;
+    }
+  }
+}
+
+.indeximg {
+    height:250px;
+}
+a .indeximg {
+    border:0;
+    padding:0;
+    margin-left:0;
+    @include pointer;
+}
+
+.genericimg {
+    background: url(/images/projects/generic/letter.jpg);
+    width:760px; 
+    height:125px;
+}
+
+
+$headerThinHeight: 150px;
+@mixin headerthin {
+    height: $headerThinHeight;
+}
+
+@mixin genericheaderimg {
+    background-repeat: no-repeat;
+    position:relative;
+    width:998px;
+    left:14px;
+    top:4px;
+}
+@mixin genericheader {
+    background-color:#000;
+    border:0px;
+    width: $landscapeWidth;
+}
+
+/*
+ * kiddphunk.com
+ */
+#header_kiddphunk_img {
+    @include cover;
+    @include genericheaderimg;
+    @include headerthin;
+    background: url(../images/kiddphunk/header_thin2.jpg);
+    width:1024px;
+    left:0px;
+}
+
+#header_kiddphunk {
+    @include genericheader;
+    height: $headerThinHeight + 19px;
+    a {
+        @include noborderpadding;
+        @include pointer;
+    }
+}
+
+/*
+ * tribalpixel.com
+ */
+#header_tribalpixel_img {
+    @include contain;
+    left:13px;
+    background: url(../images/tribalpixel/header_thin2.jpg);
+    @include genericheaderimg;
+    @include headerthin;
+}
+#header_tribalpixel {
+    @include genericheader;
+    height: $headerThinHeight + 10px;
+
+}
+
+/*
+ * beatspixelscodelife.com
+ */
+#header_bpcl_img {
+    @include contain;
+    @include genericheaderimg;
+    @include headerthin;
+    left:0px;
+    top:0px;
+	width:1024px;	
+    background: url(../images/bpcl/header_thin2.jpg);
+    height:101px;
+    position:absolute;
+}
+#header_bpcl {
+    @include genericheader;
+    height: 101px;
+    background-color:#fff;
+    margin-left: -4px;
+    margin:0;
+    height:90px;
+}
+
+
+.indexpage {
+    #header_kiddphunk {
+        height:357px;    
+    }
+    #header_kiddphunk_img {
+        @include contain;
+        background: url(../images/kiddphunk/header2.jpg);
+        height:338px;
+        left:14px;
+    }
+
+    .indexpage #header_tribalpixel {
+        height:434px;    
+    }
+    #header_tribalpixel_img {
+        background: url(../images/tribalpixel/header2.jpg);
+        height:424px;    
+    }
+    #header {
+        background-color:#000;
+    }
+}
+em {
+    color:#000;
+    color:#939;
+    font-style:none;
+}
+
+#biopic {
+    @include cover;
+    background: url(/images/bpcl/me.jpg);
+    width:246px;
+    height:164px;
+}
+
+#bpcl {
+    color: #333;
+    #aboutimg {
+        margin-left:0px;
+        width:768px;
+        overflow:hidden;
+        margin-top:15px;
+    }
+    #main {
+        background-color:#fff;            
+        background-color:#eee;
+        margin-left:-4px;
+    }
+    .mainimage {
+        margin-left:4px;
+    }
+    #wrap {
+        background-color:#fff;
+    }   
+    #content {
+        background-color:#f5f5f5;        
+        overflow:hidden;
+        width:760px;
+    }
+    .post {
+        margin-left:-4px;
+    }
+    .postcontent {
+        margin-left:4px;
+    }
+    #footer {
+        background:#ddd;
+    }
+    .isoContent {
+        margin-top:37px;
+    }
+    .postinfo {
+        margin-right:-4px;
+    }
+    #header {        
+        background-color:#f5f5f5;
+        width:100%;
+        #flower {
+            position:relative;
+            float:right;
+            display:inline;
+            z-index:100;
+            right:-5px;
+            margin-top:-5px;
+            margin-right:18px;
+            top:0;
+        }
+        h3 {
+            em {
+                color:#999;
+            }
+            float:left;
+            position:relative;
+            top:12px;
+            padding-left:16px;
+            margin-left:0px;
+        }
+        .blogabout {
+            line-height:30px;
+            right:-50px;
+            h3 {
+                float:right;                
+            }
+        }
+        .resport {
+            color:#ccc;
+            position:absolute;
+            top: 99px;
+            display: inline;
+            right:264px;
+            h3 {
+                padding:0px;
+                padding-left:0px;
+                margin-left:4px;
+                a {
+                    font-size:14px;
+                    background-color: white;
+                    padding: 10px;
+                    padding-top: 18px;
+                    font-weight: normal;
+                    @include border-radius(0 0 8px 8px);
+                }
+                a:hover {
+                    background-color: #eee;
+                }
+            }
+        }            
+    }
+    #bodyscreen {
+        @include litescreen;
+    }
+    .blogabout {
+        float:right;
+        position:relative;
+        top:12px;
+        z-index:100;
+        margin-right:12px;
+    }
+    #about {
+        width:760px;
+
+        .toolbox {
+            color:#222;
+            background-color:#efefef;
+        }
+        h1 {
+            font-size:1.7em;
+            @include box-shadow(rgba(white, 1) 1px 1px -1px);
+        }
+        h2 {
+            font-size:1.8em;
+            @include box-shadow(rgba(white, 1) 1px 1px 11px);
+            padding:0;
+        }
+        h3 {
+            font-size:1.8em;
+            font-weight:bold;
+            text-shadow: white -1px -1px 1px;
+            padding:0;
+            margin:0;
+            margin-bottom:10px;
+        }
+        h4 {
+            font-size:1.4em;
+        }
+        h5 {
+            font-size:2.5em;
+            font-weight:bold;
+            padding:0;
+            margin:0;
+            text-shadow: white -1px -1px -1px;
+        }
+        p {
+            @include box-shadow(rgba(white, 1) 1px 1px -1px);
+        }
+        #content {
+            h1 {
+                line-height:1.5em;
+            }
+        }
+    }
+    a {
+        @include pointer;
+    }
+    .sidea, .sideb, .sidec {
+        margin-bottom:15px;
+        text-align:left;
+    }
+    .sideb {
+        h1 {
+            color:#ccc;
+        }
+    }
+    .indeximg, .genericimg {
+        margin-left:4px;
+    }
+}
+
+@media only screen and (orientation:portrait){
+    #header_kiddphunk_img {
+		width: $portraitWidth;
+        height:115px;
+        left:0px;
+    }
+    #header_kiddphunk {
+        height:130px;
+    }
+    
+    #header_tribalpixel_img {
+		width:746px;
+        left:11px;
+    }
+
+    #header_tribalpixel {
+        height:320px;
+    }    
+    .isoContent {
+        margin-top:16px;
+    }
+    .indexpage {
+        #header_kiddphunk_img {
+    		width: $portraitWidth;
+            height:253px;
+            left:11px;
+        }
+        #header_kiddphunk {
+            height:270px;
+        }
+    
+        #header_tribalpixel_img {
+    		width:746px;
+            left:11px;
+        }
+        #header_tribalpixel {
+            height:320px;
+        }
+    }
+    #bpcl {
+        .side {
+/*            margin-top:30px;
+            background-color:#fff;
+*/
+            margin-top:0px;
+            background-color:#ddd;
+        }
+        .sidea, .sideb, .sidec {
+            background-color:#eee;
+        }
+        #header {
+            .resport {
+                right:4px;
+            }
+            h3 {
+                padding-left:16px;                
+            }
+            border-left:4px solid whiteSmoke;
+            border-right:4px solid whiteSmoke;
+            width:764px;
+            height:130px;
+            margin-bottom:0px;
+        }
+        #about {
+            margin-left:0px;
+        }
+        #content {
+            background-color: #fff;
+        }
+        #main {
+            background-color:#fff;
+            background-color:#eee;
+            margin-left:0px;
+            .post {
+                margin-top:8px;
+            }
+        }
+        .singlepost {
+            #content {
+                background-color:#eee;
+            }
+        }
+        #main.singlepost {
+            background-color:#eee;
+        }
+        
+    }
+    
+    #biopic {
+        @include cover;
+        background: url(/images/bpcl/me.jpg);
+        width:215px;
+        height:143px;
+    }
+    .sidea {
+        text-align:center;
+        p {
+            padding-left:16px;
+            padding-right:16px;
+        }
+    }
+    .sideb {
+        font-size:1.5em;
+        margin-bottom:15px;
+        text-align:left;
+        .influenceImage {
+            font-size:12px;
+            text-align:center;
+        }
+        h1 {
+            font-size:1em;
+            padding-left:12px;
+        }
+        h2 {
+            text-align:left;
+            padding-left:12px;
+        }        
+        p {
+            padding-left:16px;
+            padding-right:16px;
+        }
+    }
+    .sidea, .sidec {
+        p {
+            padding-left:8px;
+            padding-right:8px;
+        }
+    }
+    .side1a, .side1b, .side1c {
+        padding-left:8px;
+        width:208px;
+    }
+    .sidea {
+        h2:first-child {
+            padding-top:0px;
+        }        
+        p {
+            margin-bottom:0;
+            margin-top:12px;
+        }
+    }
+    .sideb {
+        h2:first-child {
+            padding-top:0px;
+        }
+    }
+    .sidec {
+        h2 {
+            padding-top:0px;
+        }        
+        .beats {
+            padding-top:5px;
+        }
+        p {
+            margin-top:5px;
+            margin-bottom:10px;
+        }
+    }
+    .influenceImage {
+        margin-left:8px;
+        margin-right:-8px;
+        width:200px;
+    }
+}

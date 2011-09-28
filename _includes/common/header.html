@@ -1,0 +1,40 @@
+<div id="header">
+    {% if page.sitename == 'kiddphunk' %}
+        {% if page.bodyclass == 'indexpage'%}
+            {% include kiddphunk/header_main.html %}
+        {% else %}
+            {% include kiddphunk/header_thin.html %}
+        {% endif %}
+                        
+	    <h3>Information Visualization + Generative Design + Digital Art</h3>
+
+    {% else if page.sitename == 'bpcl' %}
+        <img id='flower' src='/images/flower.png'>
+		<div class='blogabout'>
+       		<a href="/bpcl/"><h3>blog</h3></a><br>
+			<a href="/bpcl/about"><h3>about</h3></a>
+		</div>
+        {% if page.bodyclass == 'indexpage'%}
+            {% include bpcl/header_slim.html %}
+        {% else %}
+            {% include bpcl/header_slim.html %}
+        {% endif %}
+	    <h3><em>Information Visualization + Interface Design</em></h3>
+		{% if page.resport %}
+			<div class='resport'>
+				<h3>&raquo;&nbsp;<a href="/bpcl/resume#article">resume</a></h3>
+				<h3><a href="/bpcl/portfolio#article">portfolio</a></h3>
+			</div>
+		{% endif %}
+        
+
+
+    {% else if page.sitename == 'mandalabrot' %}
+
+    {% else if page.sitename == 'tribalpixel' %}
+        
+    {% else if page.sitename == 'galactivision' %}
+
+    {% endif %}
+
+</div>

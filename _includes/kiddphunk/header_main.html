@@ -1,0 +1,196 @@
+<!--
+<div id="header_kiddphunk"><div id="header_kiddphunk_img"></div></div>
+-->
+
+<script type="text/javascript">
+var myScroll;
+
+function loaded() {
+	myScroll = new iScroll('imgwrapper', {
+        useTransition: true,
+		snap: true,
+		momentum: false,
+		hScrollbar: false,
+		onScrollEnd: function () {
+			document.querySelector('#indicator > li.active').className = '';
+			document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+		}
+	 });
+	 
+	 $('#imgwrapper') .live('click', function (e) {
+	     w = $('#imgwrapper') .width()
+	     x = e.offsetX % w
+	     if (x < w/2) {
+	         myScroll.scrollToPage('prev', 0);
+	     } else {
+	         myScroll.scrollToPage('next', 0);
+	     }
+	     return false     
+	 })
+}
+document.addEventListener('DOMContentLoaded', loaded, false);
+</script>
+<style type="text/css" media="all">
+#imgwrapper {
+	float:left;
+	position:relative;	/* On older OS versions "position" and "z-index" must be defined, */
+	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
+	overflow:hidden;
+
+	background:#000;
+
+    height:358px;
+    width:998px;
+    position:relative;
+    left:14px;
+    top:4px;
+    cursor:pointer;
+}
+
+#imgscroller ul img {
+    height:338px;
+    width:998px;
+}
+
+#imgscroller {
+	width:4990px;
+	height:100%;
+	float:left;
+	padding:0;
+}
+
+#imgscroller ul {
+	list-style:none;
+	display:block;
+	float:left;
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+	text-align:left;
+}
+
+#imgscroller li {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	display:block; float:left;
+	text-align:center;
+	font-family:georgia;
+	font-size:18px;
+	line-height:140%;
+    height:338px;
+    width:998px;
+}
+
+
+
+#imgnav {
+	width:300px;
+	float:left;
+}
+
+#prev, #next {
+	float:left;
+	font-weight:bold;
+	font-size:14px;
+	padding:5px 0;
+	width:80px;
+}
+
+#next {
+	float:right;
+	text-align:right;
+}
+
+#indicator, #indicator > li {
+	display:block; 
+	float:left;
+	list-style:none;
+	padding:0; margin:0;
+	position:relative;	/* On older OS versions "position" and "z-index" must be defined, */
+	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
+}
+
+#indicator {
+    opacity:.5;
+    margin-left:-8px;
+    margin-top:-44px;
+	width:110px;
+	padding:12px 0 0 30px;
+}
+
+#indicator > li {
+	text-indent:-9999em;
+	width:8px; height:8px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	border-radius:4px;
+	background:#ddd;
+	overflow:hidden;
+	margin-right:4px;
+}
+
+#indicator > li.active {
+	background:#888;
+    opacity:.9;
+}
+
+#indicator > li:last-child {
+	margin:0;
+}
+
+
+
+
+@media only screen and (orientation:portrait){
+    #imgscroller ul img {
+        height:250px;
+        width:746px;
+    }
+
+    #imgscroller {
+    	width:3730px;
+    }
+    
+    #imgwrapper {
+        left:11px;
+        height:270px;
+        width:746px;
+    }
+
+    #imgscroller li {
+        height:250px;
+        width:746px;
+    }
+
+}
+
+
+
+
+</style>
+
+<div id="imgwrapper">
+    <div id="imgscroller">
+    	<ul id="thelist">
+     		<li><img src="/images/kiddphunk/header2.jpg"></li>
+     		<li><img src="/images/kiddphunk/header1.jpg"></li>
+     		<li><img src="/images/kiddphunk/header5.jpg"></li>
+     		<li><img src="/images/kiddphunk/header3.jpg"></li>
+     		<li><img src="/images/kiddphunk/header6.jpg"></li>
+    	</ul>
+    </div>
+</div>
+<div id="imgnav">
+	<ul id="indicator">
+		<li class="active">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+</div>
+

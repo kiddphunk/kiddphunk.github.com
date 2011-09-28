@@ -1,0 +1,101 @@
+---
+layout: post
+---
+
+
+<div class="span-6">
+
+	<div class="toolbox" style="background-color:#{{page.bgcolor}}">
+	    {% if page.tags %}
+            <h5>TAGS</h5>
+	        {% for tag in page.tags %}
+                <a class="tag_{{ tag | replace:' ', '-' | downcase }}" href="/tags/{{ tag | replace:' ', '-' | downcase }}">{{ tag }}</a>
+            {% endfor %}
+            <br>
+        {% endif %}
+	    {% if page.tools %}
+            <h5>TOOLS</h5>
+            <!--
+            {{page.tools | array_to_sentence_string}}
+            -->
+	        {% for tool in page.tools %}
+                {{tool}}<br>
+            {% endfor %}            
+        {% endif %}
+	    {% if page.print or page.web%}
+            <h5>SELECTED PRESS</h5>
+        {% endif %}
+	    {% if page.print %}
+            <div class='pressitem'>print</div>
+	        {% for p in page.print %}
+                {{p}}<br>
+            {% endfor %}
+        {% endif %}
+	    {% if page.web %}
+            <div class='pressitem'>web</div>
+	        {% for p in page.web %}
+                {{p}}<br>
+            {% endfor %}
+        {% endif %}
+	    {% if page.credits %}
+            <h5>CREDITS</h5>
+	        {% for credit in page.credits %}
+                {{credit}}<br>
+            {% endfor %}
+        {% endif %}
+	</div>
+
+    {% if page.shoutout %}
+        <div class='shoutoutframe' style="background-color:#{{page.bgcolor}}">
+		    <p class="large shoutout justright">&#8220;{{page.shoutout}}&#8221;</p>
+	    </div>
+    {% endif %}
+
+    {% if page.comments %}
+        <p></p>
+    	<blockquote>
+        	<p>
+                {{page.comments}}
+        	</p>
+    	</blockquote>
+    {% endif %}
+</div>
+
+<div class="span-13 last">
+    {% if page.topimage %}
+        <div class="prepend-1 span-11 last topimage" >
+            {% if page.topimagelink %}                
+    		    <a href='{{page.topimagelink}}'><img src='{{page.topimage}}'></a>
+            {% else if page.topimage %}                
+                <img src='{{page.topimage}}'>
+            {% else %}
+                <img src='/images/projects/generic/letter.jpg'>
+	        {% endif %}
+    	</div>
+	{% endif %}
+
+    {% if page.topnote %}
+        <p></p>
+        <div class="prepend-1 span-11 topnote last">
+            <p>{{page.topnote}}</p>
+        </div>
+    {% endif %}
+
+    <div class="prepend-1 span-11 last">
+        <p></p>
+        {{content}}
+    </div>
+
+    <div class="prepend-1 span-11 last" >
+    </div>      
+    
+    {% if page.note %}
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div class="prepend-1 span-11 topnote last" >
+            <p>{{page.note}}</p>
+    	</div>
+	{% endif %}
+    
+</div>
+

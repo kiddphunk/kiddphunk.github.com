@@ -1,0 +1,34 @@
+---
+layout: flow
+---
+    {% include common/header.html %}
+
+	<div id="outercontent">
+		<div id="main">
+			<!-- Main content start -->
+			<div class="toc1">
+				SHOWING LATEST BLOG POSTS
+			</div>
+
+        <div id="content">
+			<div class="toc2 right">
+	          <h2>Posts:</h2>
+	          <h3>all</h3>
+			</div>
+
+          <ul class="isoContent">
+			{{ content }}
+          </ul>
+        </div>
+
+			<!-- Main content end -->
+		</div>
+		<div class="side">
+            {% include common/sidebar1.html %}
+		</div>
+	</div>
+	<div id="footer">{% include common/footer.html %}</div>
+</div>
+
+
+

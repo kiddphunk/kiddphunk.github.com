@@ -1,0 +1,13 @@
+_site/*
+
+test/*
+
+portfolio/*
+
+mandalabrot/*
+
+.sass-cache/*
+
+bin/*
+
+tmp/*

@@ -1,0 +1,89 @@
+---
+layout: flow
+---
+{% include common/header.html %}
+
+<div id="outercontent">
+	<div id="main" class='singlepost'>
+
+
+    <div class="apple_overlay" id="overlay">
+    	<div class="contentWrap"></div>
+    </div>
+
+    <div id="content">
+
+
+      <ul class="isoContent">
+          <li class='post'>            
+              {% if page.image %}
+                <img class='mainimage' src='{{page.image}}'>
+              {% else %}
+                <div class='genericimg'></div>
+              {% endif %}
+
+            <a name='article' id='article'></a>
+            <div {% if page.bgcolor %}style='background-color:#{{page.bgcolor}}'{% endif %}  class='postinfo {% if page.image %}nongeneric{% else %}generic{% endif %}'><a href="{{ page.url }}">{{ page.title }}</a>{% if page.date %}&#8226;<span>{{ page.date | date_to_long_string }}</span>{% endif %}{% if page.altdate %}&#8226;<span>{{ page.altdate }}</span>{% endif %}</div>          
+            <div class='postcontent' {% if page.bgcolor %}style='background-color:#{{page.bgcolor}}'{% endif %}>
+                <div class='innerpostcontent'>
+                    <div class="container showgrid2">
+
+                        {{ content }}
+
+	
+				{% if page.fbcomments %}
+					<p></p>
+
+				<hr>
+	                    <div class="prepend-7 span-10 last">
+							<h1>
+								<fb:comments-count href={{ page.url }}></fb:comments-count> comments 
+							</h1>
+						</div>
+				<hr>
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) {return;}
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+
+				<div class="fb-comments" data-href="{{ page.url }}" data-num-posts="2" data-width="500"></div>
+			{% endif %}
+
+<p></p>
+
+                        {% if page.bottomimage %}
+	                    <div class="span-19 fullbox last">
+                    		<img src='{{page.bottomimage}}' {% if page.bgcolor %}style='border-top:10px solid #{{page.bgcolor}}'{% endif %}>
+                    	</div>
+                    	{% endif %}
+                    </div>
+                </div>
+            </div>          
+
+          </li>
+      </ul>
+    </div>
+
+
+
+
+
+	</div>
+	<div class="side">
+
+        {% include common/sidebar1.html %}
+	</div>
+</div>
+<div id="footer">
+        {% include common/footer.html %}
+</div>
+
+
+
+
+
+

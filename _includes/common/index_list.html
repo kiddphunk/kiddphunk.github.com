@@ -1,0 +1,29 @@
+   <li class='post'>
+       <a href="{{ post.url }}#article">
+           {% if post.image %}
+             <img class='indeximg' src='{{post.image}}' style="border-top:0px solid #{{post.bgcolor}}">
+           {% else %}
+             <div class='genericimg' style="border-top:0px solid #{{post.bgcolor}}"></div>
+           {% endif %}
+       </a>                  
+     {% if post.badge == 'comingsoon' %}
+         <div class="badgeWrapper">
+             <a class="comingsoon" href="">
+               <span>Coming Soon!</span>
+               <span>Coming Soon!</span>
+             </a>              
+          </div>
+       {% endif %}
+       
+       <div {% if post.bgcolor %}style='background-color:#{{post.bgcolor}}'{% endif %}  class='postinfo'><a href="{{ post.url }}#article">{{ post.title }}</a>&#8226;<span>{{ post.date | date_to_long_string }}</span></div>          
+
+       <div class='postcontent' {% if post.bgcolor %}style='background-color:#{{post.bgcolor}}'{% endif %}>
+           <div class='innerpostcontent'>
+               {% if post.shoutout %}
+                 <div class='shoutoutframe' style="background-color:#{{post.bgcolor}}">
+         		    <div class="large shoutout"><p>&#8220;{{post.shoutout}}&#8221;</p></div>
+         	    </div>
+         	  {% endif %}
+           </div>
+       </div>          
+   </li>

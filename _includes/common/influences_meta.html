@@ -1,0 +1,59 @@
+<style>
+.influenceImage {
+	background-image: url('/images/kiddphunk/influences/small.loading.jpg');
+	cursor:pointer;
+    overflow:hidden;
+	width: 200px;
+	height: 67px;
+}
+
+</style>
+
+<script>
+	$('.influenceImage').each(function(index, o) {
+		$(o).click(function() {
+			var n = '#'+$(this).attr('id');
+			var a = $(n+' .infltitle a').attr('href') ||
+					$(n+' .infltitle2 a').attr('href');
+			a = a.substring(1);
+			window.open('http://'+a, 'linkWindow');
+		});
+		$(o).css({'background-image':'url(/images/kiddphunk/influences/'+$(o).attr('src')+')'});
+	});
+
+	for (var i=1; i<22; i++) {
+		var n='#influenceImage'+i;
+		if (i % 2 == 0) 
+			$(n).html('<div class="infltitle">'+$(n).attr('alt')+'</div>');
+		else
+			$(n).html('<div class="infltitle2">'+$(n).attr('alt')+'</div>');
+		$(n+' .infltitle').slideUp();
+		$(n+' .infltitle2').slideUp();
+	}		
+	
+	$('.side').mouseenter(function() {	
+		for (var i=1; i<22; i++) {
+			var n='#influenceImage'+i;
+			$(n+' .infltitle').slideDown();
+		}
+		$(document).oneTime(500, function() {	
+			for (var i=1; i<22; i++) {
+				var n='#influenceImage'+i;
+				$(n+' .infltitle2').slideDown();
+			}		
+		});
+	});
+	
+	$('.side').mouseleave(function() {	
+		for (var i=1; i<22; i++) {
+			var n='#influenceImage'+i;
+			$(n+' .infltitle').slideUp();
+		}
+		$(document).oneTime(500, function() {	
+			for (var i=1; i<22; i++) {
+				var n='#influenceImage'+i;
+				$(n+' .infltitle2').slideUp();
+			}		
+		});
+	});
+</script>
