@@ -1095,6 +1095,10 @@ a .indeximg {
   height: 90px;
 }
 
+.feedimg {
+  display: none;
+}
+
 .indexpage #header_kiddphunk {
   height: 357px;
 }

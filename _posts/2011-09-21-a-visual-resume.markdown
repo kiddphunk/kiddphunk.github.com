@@ -18,6 +18,7 @@ shoutout: "I finally decided to recast my resume with more data visualization&md
 sitename: kiddphunk
 fbcomments: false
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 
 [View PDF](/images/resume/ian_timourian_resume_Fall2011.pdf)

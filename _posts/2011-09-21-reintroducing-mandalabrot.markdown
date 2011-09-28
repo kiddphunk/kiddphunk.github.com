@@ -20,6 +20,7 @@ bottomimage: /images/projects/sheep/sheepdetail.jpg
 topnote: ""
 shoutout: ""
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 
 

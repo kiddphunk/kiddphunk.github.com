@@ -22,6 +22,7 @@ sitename: kiddphunk
 fbcomments: false
 aboutpage: true
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 
 [View project](http://mandalabrot.net/delicious) / [(PDF)](/images/projects/delicious/del.icio.us.discover.pdf)

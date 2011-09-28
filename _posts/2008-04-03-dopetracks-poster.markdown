@@ -23,6 +23,7 @@ sitename: kiddphunk
 fbcomments: yes
 aboutpage: true
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 [View larger image](/images/projects/dopetracks/dopetracks_large.jpg)
 

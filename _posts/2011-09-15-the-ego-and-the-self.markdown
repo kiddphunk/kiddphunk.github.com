@@ -16,5 +16,6 @@ shoutout: "At least this is how I see it..."
 sitename: kiddphunk
 fbcomments: true
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 I created this quick illustration in 2001 after a trip to Whole Foods. I came across it recently and felt like posting it again.

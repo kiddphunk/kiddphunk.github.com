@@ -17,6 +17,7 @@ shoutout: "This robot has self-assembled completely out of musical instruments (
 sitename: kiddphunk
 fbcomments: true
 ---
+<img class='feedimg' src='{{page.topimage}}'><br>
 
 
 
