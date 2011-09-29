@@ -27,7 +27,7 @@ I love Google Voice. Admittedly, I primarily use it (and GrandCentral before tha
 [(More on that below.)](#footnote)
 
 
-Around Christmas 2009 I got the urge to call up my Google Voice number and leave a message to see how it would translate the 'a cappella' version of [*Nothin' but a 'G'Thang*](http://en.wikipedia.org/wiki/Nuthin'_but_a_'G'_Thang). 
+Around Christmas 2009 I got the urge to call up my Google Voice number and leave a message to see how well it would translate the 'a cappella' version of [*Nothin' but a 'G'Thang*](http://en.wikipedia.org/wiki/Nuthin'_but_a_'G'_Thang). 
 
 **The way I see it, there must come a time when not only will this be nearly translatable, but I will receive voice-analysis meta-data along with the transcription that will indicate that indeed, Snoop and Dr. Dre just left a message for me. **
 

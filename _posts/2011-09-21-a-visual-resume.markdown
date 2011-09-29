@@ -20,7 +20,7 @@ fbcomments: false
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
-[View PDF](/images/resume/ian_timourian_resume_Fall2011.pdf)
+[View PDF](http://beatspixelscodelife.com/resume/ian_timourian_resume_Fall2011.pdf)
 
 
 
