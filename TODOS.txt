@@ -1,3 +1,7 @@
+Add hacker news button + other likes....
+
+Separate blog from other site
+
 Add back BPCL header animation
 
 Add tribalpixel, galactivision sites with pictures and music

@@ -4,8 +4,8 @@ paginate: 10
 #baseurl: bpcl/
 permalink: pretty
 
-#feedburner.id: 'beatspixelscodelife/kJuy'
-#google_analytics.account: 'UA-288188-6'
+feedburner.id: 'beatspixelscodelife/kJuy'
+google_analytics.account: 'UA-288188-1'
 
 url: http://kiddphunk.com
 
