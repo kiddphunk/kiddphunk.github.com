@@ -266,5 +266,5 @@ The end soliloquy is [a quasi-'free-jazz' piece](http://kiddphunk.com/images/pro
 
 I will be analyzing and visualizing Gertrude Stein's linguistic constructions in Part Two.
 
-In Part Three, I will post the github project, as well as have additional examples of soliloquies generated from Stein, as well as from Dr. Seuss, Shel Silverstein and others. 
+In Part Three, I will post the github project, along with additional examples of soliloquies generated from Stein, as well as from Dr. Seuss, Shel Silverstein and others. 
 
