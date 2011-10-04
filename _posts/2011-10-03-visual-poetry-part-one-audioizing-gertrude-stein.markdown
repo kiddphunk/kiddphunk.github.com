@@ -12,13 +12,13 @@ tags:
     - datavis
 tools: [Python, Natural Language Toolkit (NLTK), Python MIDI Package]
 image: http://kiddphunk.com/images/projects/visualpoetry/wouldhelikeit1.jpg
-tracks: [/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3]
+tracks: [http://kiddphunk.com/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3]
 tracknotes: [The result- A Picasso Soliloquy]
 bgcolor: a55dda
 shoutout: "Poetry becomes piano soliloquy &mdash; a beautiful mapping into the audio domain is possible, because Stein's unique linguistical algorithms created a corpus with self-similar structure."
 aboutpage: true
 fbcomments: true
-js: /images/projects/visualpoetry/js/picasso.js
+js: http://kiddphunk.com/images/projects/visualpoetry/js/picasso.js
 ---
 
 
@@ -76,7 +76,7 @@ the [Python MIDI Package](http://pypi.python.org/pypi/midi/0.2.1) for MIDI outpu
 
 The process that is utilized is rather straight-forward and is illustrated in the diagram below:
 
-<img class='fullimage' src='/images/projects/visualpoetry/mappingdiagram.jpg' title='a diagram of the mapping process'>
+<img class='fullimage' src='http://kiddphunk.com/images/projects/visualpoetry/mappingdiagram.jpg' title='a diagram of the mapping process'>
 
 
 &nbsp;
@@ -91,11 +91,11 @@ I decided early on not to map onto any scale, choosing rather to use the full ch
 
 The diagram below maps out the flow of the Picasso poem with the beginning word at the top left. The y-axis represents unique words, the x-axis represents total words, and the more a word is used the larger its node becomes:
 
-<img class='fullimage' src='/images/projects/visualpoetry/picasso_if_i_told_him_flow_s.jpg'>
+<img class='fullimage' src='http://kiddphunk.com/images/projects/visualpoetry/picasso_if_i_told_him_flow_s.jpg'>
 
 It is immediately apparent how she riffs on words and sentence fragments, and it is these patterns and repetitions that will translate into interesting music later.
 
-(It might be useful to look at this visualization while listening to [the rendered piano soliloquy](/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3); the beginning mappings will be more apparent than at the end.)
+(It might be useful to look at this visualization while listening to [the rendered piano soliloquy](http://kiddphunk.com/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3); the beginning mappings will be more apparent than at the end.)
 
 
 Every one of these words in the source text is processed and output as a note in the final song, each taking on distinct qualities as determined by a few major factors:
@@ -262,7 +262,7 @@ I encode sentences into melodic phrases containing their own tempo (varying only
 The Result
 ==========
 
-The end soliloquy is [a quasi-'free-jazz' piece](/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3) containing the same self-similarity that the poem does, creating a remarkably listenable and enjoyable translation into musical notes.  It is Stein's unique method of sentence construction that creates the repetition and pattern-reuse that is invaluable when creating music. 
+The end soliloquy is [a quasi-'free-jazz' piece](http://kiddphunk.com/images/projects/visualpoetry/mp3/a4_v12_picasso120_abs.mp3) containing the same self-similarity that the poem does, creating a remarkably listenable and enjoyable translation into musical notes.  It is Stein's unique method of sentence construction that creates the repetition and pattern-reuse that is invaluable when creating music. 
 
 I will be analyzing and visualizing Gertrude Stein's linguistic constructions in Part Two.
 
