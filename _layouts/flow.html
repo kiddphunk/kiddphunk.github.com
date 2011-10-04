@@ -77,8 +77,7 @@
   {% endif %}
 -->
 
-
-<body class="rootWrapper {% if page.bodyclass %}{{page.bodyclass}}{% endif %}" id="{% if page.sitename %}{{page.sitename}}{% endif %}">
+<body class="rootWrapper {% if page.bodyclass %}{{page.bodyclass}}{% endif %}" id="{% if site.sitename %}{{site.sitename}}{% else if page.sitename %}{{page.sitename}}{% endif %}">
 
     <div id="bodyscreen">
         <div id="wrap">

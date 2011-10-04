@@ -60,16 +60,18 @@ layout: post
     	</blockquote>
     {% endif %}
 
-	{% if page.track %}
+	{% if page.tracks %}
+        {% for track in page.tracks %}
+
 		<!-- The jPlayer div must not be hidden. Keep it at the root of the body element to avoid any such problems. -->
-		<div id="jquery_jplayer_1" class="cp-jplayer"></div>
+		<div id="jquery_jplayer_{{forloop.index}}" class="cp-jplayer"></div>
 
 		<div class="prototype-wrapper"> <!-- A wrapper to emulate use in a webpage and center align -->
 
 
 			<!-- The container for the interface can go where you want to display it. Show and hide it as you need. -->
 
-			<div id="cp_container_1" class="cp-container">
+			<div id="cp_container_{{forloop.index}}" class="cp-container">
 				<div class="cp-buffer-holder"> <!-- .cp-gt50 only needed when buffer is > than 50% -->
 					<div class="cp-buffer-1"></div>
 					<div class="cp-buffer-2"></div>
@@ -86,20 +88,21 @@ layout: post
 			</div>
 
         	<p class='trackcomment'>
-                {{page.tracknote}}
+				{% for note in page.tracknotes offset:forloop.index0 limit:1 %}{{note}}{%endfor%}&nbsp;&nbsp;&nbsp;
         	</p>
 		</div>
 		
-	<script type="text/javascript">
-	    $(document).ready(function(){
-			var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1",
-			{
-				m4a: "{{page.track}}",
-			}, {
-				cssSelectorAncestor: "#cp_container_1"
-			});
-	    });
-	</script>
+		<script type="text/javascript">
+		    $(document).ready(function(){
+				new CirclePlayer("#jquery_jplayer_{{forloop.index}}",
+				{
+					m4a: "{{track}}",
+				}, {
+					cssSelectorAncestor: "#cp_container_{{forloop.index}}"
+				});
+		    });
+		</script>
+	{% endfor %}
 {% endif %}
 </div>
 
@@ -111,7 +114,7 @@ layout: post
             {% else if page.topimage %}                
                 <img src='{{page.topimage}}'>
             {% else %}
-                <img src='/images/projects/generic/letter.jpg'>
+                <img src='http://kiddphunk.com/images/projects/generic/letter.jpg'>
 	        {% endif %}
     	</div>
 	{% endif %}
@@ -137,6 +140,12 @@ layout: post
         <div class="prepend-1 span-11 topnote last" >
             <p>{{page.note}}</p>
     	</div>
+	{% endif %}
+
+    {% if page.js %}
+		<script>
+			$.getScript('{{page.js}}');
+		</script>
 	{% endif %}
     
 </div>

@@ -17,7 +17,6 @@ bottomimage: /images/projects/sheep/sheepdetail.jpg
 topnote: "This is first in a series of posters I am creating that commemorate influential digital artists."
 shoutout: "The mosaic was generated from a selection of over 10,000 seed images; the sheep here are from Generation 243 and the poster is approximately 1 Gigapixel in size."
 #note: "Zoomed detail (full-size):"
-sitename: kiddphunk
 fbcomments: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>

@@ -1,6 +1,6 @@
 ---
 published: true
-title: visual poetry, part 1 / visualizing gertrude stein
+title: visual poetry, part 2 / visualizing gertrude stein
 layout: project
 category: projects
 tags:
@@ -16,7 +16,6 @@ badge: comingsoon
 bgcolor: b667a2
 shoutout: "Using the NLTK and d3 to visualize Gertrude Stein's poetry, I make visible the beautiful rhythms and patterns inherent in her seemingly obfuscated prose."
 aboutpage: true
-sitename: kiddphunk
 fbcomments: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>

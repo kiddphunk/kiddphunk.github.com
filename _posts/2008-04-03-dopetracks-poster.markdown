@@ -19,7 +19,6 @@ topimage: /images/projects/dopetracks/dopetracks_mini.jpg
 topimagelink: /images/projects/dopetracks/dopetracks_large.jpg
 bottomimage: /images/projects/dopetracks/dopetracks_detail.jpg
 shoutout: "5,485 names are contained within this visualization on the DopeTracks one-year anniversary poster."
-sitename: kiddphunk
 fbcomments: yes
 aboutpage: true
 ---

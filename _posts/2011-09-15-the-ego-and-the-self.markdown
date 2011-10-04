@@ -13,7 +13,6 @@ image: /images/projects/carrot/carrot.jpg
 topimage: /images/projects/carrot/carrot_mini.jpg
 topimagelink: /images/projects/carrot/carrot_large.jpg
 shoutout: "At least this is how I see it..."
-sitename: kiddphunk
 fbcomments: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>

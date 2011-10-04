@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>parser.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  
+  <div class='section'>
+    <div class='docs'><h1>parser.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>PoemParser .1.1
+(c) 2010-2011 Ian Timourian, beatspixelscodelife.com</p>
+<p>PoemParser is freely distributable under the MIT license.</p>
+<p>For all details and documentation:
+<a href="https://github.com/kiddphunk/VisualPoetry">https://github.com/kiddphunk/VisualPoetry</a></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <h2>Imports</h2>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">curses.ascii</span> <span class="kn">import</span> <span class="n">isdigit</span> 
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+<span class="kn">import</span> <span class="nn">sys</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p><a href="http://www.nltk.org">Natural Language Toolkit (NLTK)</a> for
+language / poem analysis.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">Nonterminal</span><span class="p">,</span> <span class="n">nonterminals</span><span class="p">,</span> <span class="n">Production</span><span class="p">,</span> <span class="n">parse_cfg</span><span class="p">,</span> <span class="n">ContextFreeGrammar</span><span class="p">,</span> <span class="n">FreqDist</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">cmudict</span> 
+<span class="kn">from</span> <span class="nn">nltk.collocations</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">WhitespaceTokenizer</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p><a href="http://pypi.python.org/pypi/midi/0.2.1">Pythonic MIDI API</a> for
+programmatic MIDI music synthesis.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">from</span> <span class="nn">midi.MidiOutFile</span> <span class="kn">import</span> <span class="n">MidiOutFile</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">PoemParser</span><span class="p">():</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="s">&quot;picasso2&quot;</span><span class="p">,</span> <span class="n">basedir</span><span class="o">=</span><span class="s">&quot;song_data&quot;</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">basedir</span> <span class="o">=</span> <span class="n">basedir</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/source/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span><span class="n">dataset</span><span class="p">,</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:init:dataset parsing &#39;</span><span class="si">%s</span><span class="s">&#39;...&quot;</span><span class="o">%</span><span class="n">filename</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Open and analyze the text data.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span>   <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">openTokens</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pos_tags</span>   <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">text</span>       <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dict</span>       <span class="o">=</span> <span class="n">cmudict</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> 
+    <span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span>  <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiindex</span>  <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="bp">self</span><span class="o">.</span><span class="n">setMIDISettings</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+    
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:init:words </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:init:tokens </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:init:text </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">runAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Print interesting NLTK data.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="bp">self</span><span class="o">.</span><span class="n">printAllNgrams</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">printAllConcordance</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">generatePseudoText</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>   </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Render MIDI files.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">30.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span> 
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">70.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">90.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">100.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">120.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">130.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">125000</span><span class="p">)</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">30_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">70_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">90_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">100_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">120_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">createMIDIFile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">130_abs.mid&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">125000</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>Generate JSON datafile.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="bp">self</span><span class="o">.</span><span class="n">generateJSON</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">createMIDIFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">tempo</span><span class="o">=</span><span class="mi">250000</span><span class="p">,</span> <span class="n">absoluteIndexing</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:createMIDIFile:filename </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">filename</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__midistart</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">pos_tag_iter</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_tags</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+      <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lastword</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__midiadd</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">lastword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">absoluteIndexing</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__midiadd</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">absoluteIndexing</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">__midiend</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">setMIDISettings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p><code>......v---------&lt;range&gt;--------v.............</code>
+<code>||2C||||||3C||||||4C||||||...||||||7C|||||||| &lt;- all notes</code>
+<code>......^................^.....................</code></p>
+<p><code>......^...............&lt;startnote&gt;............</code></p>
+<p><code>.....&lt;offset&gt;................................</code></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p><code>startnote</code> - The MIDI note to map to the first word in the poem.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">70</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-15'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-15'>#</a>
+      </div>
+      <p><code>range</code> - The spectrum/number of musical notes in our vocabulary.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">127</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-16'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-16'>#</a>
+      </div>
+      <p><code>offset</code> - The bottom offset of the MIDI spectrum.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-17'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-17'>#</a>
+      </div>
+      <p><code>numchannels</code> - The number of channels.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-18'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-18'>#</a>
+      </div>
+      <p><code>1==short</code>, <code>2==short_and_long</code>, <code>&gt;2==mod_by</code></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-19'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-19'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-20'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-20'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-21'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-21'>#</a>
+      </div>
+      <p>The default loudness level.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-22'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-22'>#</a>
+      </div>
+      <p>The direction of musical / poem progression.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;up&#39;</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-23'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-23'>#</a>
+      </div>
+      <p>Should we include the MIDI drum channel?</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-24'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-24'>#</a>
+      </div>
+      <p>The name of this session / configuration.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v0&#39;</span><span class="p">,</span> </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-25'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-25'>#</a>
+      </div>
+      <p>The algorithm to use in conjunction with these settings.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">1</span> <span class="p">}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-26'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-26'>#</a>
+      </div>
+      <p>"Experimental" settings</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">70</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">127</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v1&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">127</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v2&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">127</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span><span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v4&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">127</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v5&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">84</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v6&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">108</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v7&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">108</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v8&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">108</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v9&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">108</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v10&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-27'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-27'>#</a>
+      </div>
+      <p>"Production" settings</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">96</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v11&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">72</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span> 
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;v12&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># bass</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;startnote&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s">&#39;numchannels&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;truncate&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                              <span class="s">&#39;randdist&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;randoffset&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="s">&#39;loudness&#39;</span><span class="p">:</span><span class="mh">0x64</span><span class="p">,</span> <span class="s">&#39;direction&#39;</span><span class="p">:</span><span class="s">&#39;down&#39;</span><span class="p">,</span>
+                              <span class="s">&#39;drums&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span><span class="s">&#39;bass&#39;</span><span class="p">,</span> <span class="s">&#39;algo&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-28'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-28'>#</a>
+      </div>
+      <h6 />
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-29'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-29'>#</a>
+      </div>
+      <p>Returns a random amount of 'jigger' (up to 10ms) 
+to 'de-robotise' and avoid any patterns that sound overly precise 
+and inhuman.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">addTimeToHumanize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-30'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-30'>#</a>
+      </div>
+      <p>Returns a length of time determined by the number of syllables in the word.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">addTimeForSyllables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numsyl</span><span class="p">(</span><span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-31'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-31'>#</a>
+      </div>
+      <p><strong>ISSUE</strong> - <em>these next two methods are crude and can obviously have 
+false positives (e.g. "St. Elmo's Fire") but for the poem it was 
+created they are sufficient.</em></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  
+  </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-32'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-32'>#</a>
+      </div>
+      <p>Returns a random length of time (100ms - 500ms) if a period is found.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">addTimeForSentenceEnd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">lastfullword</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">400</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>              
+    <span class="k">return</span> <span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-33'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-33'>#</a>
+      </div>
+      <p>Returns a random length of time (80ms - 380ms) if a comma is found.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">addTimeForSentencePause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">lastfullword</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">300</span><span class="p">)</span><span class="o">+</span><span class="mi">80</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>              
+    <span class="k">return</span> <span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-34'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-34'>#</a>
+      </div>
+      <p>Returns a loudness metric based on the word count; the more frequently
+a word is used, the louder it will become.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">addLoudnessForCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">boost</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;loudness&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">40</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">count</span><span class="o">+</span><span class="n">boost</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>              
+    <span class="k">return</span> <span class="mi">0</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-35'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-35'>#</a>
+      </div>
+      <p>Returns the resolved note index for the current <code>word</code>.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">getNoteIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">absindex</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-36'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-36'>#</a>
+      </div>
+      <p>Are we progressing up the scale or down?</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;direction&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;up&#39;</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;----&gt; note = </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">((</span><span class="n">startnote</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;range&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;offset&#39;</span><span class="p">]))</span>
+      <span class="k">return</span> <span class="p">(</span><span class="n">startnote</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;range&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;offset&#39;</span><span class="p">]</span>  
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;----&gt; note = </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">((</span><span class="n">startnote</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;range&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;offset&#39;</span><span class="p">]))</span>
+      <span class="k">return</span> <span class="p">(</span><span class="n">startnote</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;range&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;offset&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-37'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-37'>#</a>
+      </div>
+      <p>(This was going to have more complex logic here...)</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">getAlgoFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="mi">1</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo1</span><span class="p">,</span>
+      <span class="mi">2</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo2</span><span class="p">,</span>
+      <span class="mi">3</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo3</span><span class="p">,</span>
+      <span class="mi">4</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo4</span><span class="p">,</span>
+      <span class="mi">5</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo5</span><span class="p">,</span>
+      <span class="mi">7</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">__algo7</span><span class="p">,</span>
+    <span class="p">}[</span><span class="n">algo</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-38'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-38'>#</a>
+      </div>
+      <p><strong>Algorithm 1</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNoteIndex</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">just_index</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">noteindex</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">],</span> <span class="n">noteindex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;loudness&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randdist&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randoffset&#39;</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">noteindex</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-39'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-39'>#</a>
+      </div>
+      <p><strong>Algorithm 2</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNoteIndex</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">just_index</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">noteindex</span>
+    
+    <span class="n">extratime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addTimeForSentenceEnd</span><span class="p">(</span><span class="n">lastfullword</span><span class="p">)</span>
+      
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">]),</span> <span class="n">noteindex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;loudness&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randdist&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randoffset&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">extratime</span><span class="p">))</span>
+    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-40'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-40'>#</a>
+      </div>
+      <p>short</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">],</span> <span class="n">noteindex</span><span class="p">)</span>
+      </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-41'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-41'>#</a>
+      </div>
+      <p>short and long</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">.</span><span class="mi">5</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">],</span> <span class="n">noteindex</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">noteindex</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-42'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-42'>#</a>
+      </div>
+      <p><strong>Algorithm 3</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNoteIndex</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">just_index</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">noteindex</span>
+    
+    <span class="n">extratime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addTimeForSentenceEnd</span><span class="p">(</span><span class="n">lastfullword</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">addTimeForSentencePause</span><span class="p">(</span><span class="n">lastfullword</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">addTimeForSyllables</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>    
+    <span class="n">loudness</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">addLoudnessForCount</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">]),</span> <span class="n">noteindex</span><span class="p">,</span> <span class="n">loudness</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randdist&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randoffset&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">extratime</span><span class="p">))</span>
+    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-43'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-43'>#</a>
+      </div>
+      <p>short and long based on count</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]):</span>      
+        <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">],</span> <span class="n">noteindex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">noteindex</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-44'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-44'>#</a>
+      </div>
+      <p><strong>Algorithm 4 base</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo4_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">noteindex</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span> 
+    <span class="n">extratime</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">extraloud</span> <span class="o">=</span> <span class="mi">0</span>    
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">lastfullword</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">extratime</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">400</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span>
+        <span class="n">extraloud</span> <span class="o">=</span> <span class="mi">15</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randdist&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randoffset&#39;</span><span class="p">])</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">,</span><span class="si">%s</span><span class="s">] (period) setting speed to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span><span class="p">))</span>
+      <span class="k">if</span> <span class="n">lastfullword</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">extratime</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">150</span><span class="p">)</span><span class="o">+</span><span class="mi">100</span>
+        <span class="n">extraloud</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randdist&#39;</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;randoffset&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;[</span><span class="si">%s</span><span class="s">,</span><span class="si">%s</span><span class="s">] (comma) setting speed to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">pass</span>      
+      
+    <span class="n">extratime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addTimeForSyllables</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">addTimeToHumanize</span><span class="p">()</span>
+    <span class="n">loudness</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">addLoudnessForCount</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">extraloud</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">loudness</span> <span class="o">&gt;</span> <span class="mi">255</span><span class="p">:</span>
+        <span class="n">loudness</span> <span class="o">=</span> <span class="mi">255</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_on</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">]),</span> <span class="n">noteindex</span><span class="p">,</span> <span class="n">loudness</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastspeed</span><span class="o">+</span><span class="n">extratime</span><span class="p">)</span>
+    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-45'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-45'>#</a>
+      </div>
+      <p>Short and long based on index.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;truncate&#39;</span><span class="p">]):</span>      
+        <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">note_off</span><span class="p">(</span><span class="n">index</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;numchannels&#39;</span><span class="p">],</span> <span class="n">noteindex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">noteindex</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-46'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-46'>#</a>
+      </div>
+      <p><strong>Algorithm 4</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>    
+    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNoteIndex</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">just_index</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">noteindex</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo4_base</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">noteindex</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">just_index</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-47'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-47'>#</a>
+      </div>
+      <p><strong>Algorithm 5</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo4</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    
+    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-48'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-48'>#</a>
+      </div>
+      <p><strong>Algorithm 7</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__algo7</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">just_index</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>    
+    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNoteIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">just_index</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">noteindex</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo4_base</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">noteindex</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">just_index</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-49'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-49'>#</a>
+      </div>
+      <p>Initialize the MIDI generator, creating the output MIDI file and header info.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__midistart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">tempo</span><span class="o">=</span><span class="mi">250000</span><span class="p">):</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/songs&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+      <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">algo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;algo&#39;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiindex</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="s">&#39;_firsttime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span> <span class="o">=</span> <span class="n">MidiOutFile</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/a</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">algo</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;_&#39;</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Creating MIDI file ------------------&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">header</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">start_of_track</span><span class="p">()</span> 
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">tempo</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">time_signature</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-50'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-50'>#</a>
+      </div>
+      <p>Outputs the next MIDI note for the current word. <br />
+</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__midiadd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">absoluteIndexing</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>    
+        <span class="k">pass</span>
+        
+    <span class="k">except</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">midiindex</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+      
+      <span class="k">if</span> <span class="n">absoluteIndexing</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiindex</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span> 
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">startnote</span><span class="p">:</span>
+      <span class="n">startnote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;startnote&#39;</span><span class="p">]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-51'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-51'>#</a>
+      </div>
+      <p>This is where the real logic lies, in the various alorithms that determine the
+individuality of this note/musical phrase.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">noteindex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAlgoFunc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;algo&#39;</span><span class="p">])(</span><span class="n">index</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> 
+        <span class="n">lastfullword</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="s">&#39;_firsttime&#39;</span><span class="p">]:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:__midiadd </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span>
+        <span class="p">(</span><span class="s">&quot;word&quot;</span> <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+         <span class="s">&quot;idx&quot;</span>  <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+         <span class="s">&quot;cnt&quot;</span>  <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+         <span class="s">&quot;midi&quot;</span> <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+         <span class="s">&quot;pos&quot;</span>  <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+         <span class="s">&quot;syl&quot;</span>  <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="s">&#39;_firsttime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:__midiadd </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s"> . </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span>
+      <span class="p">((</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">word</span><span class="p">)</span>                        <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+       <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">index</span><span class="p">)</span>                       <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+       <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+       <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">noteindex</span><span class="p">)</span>                   <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+       <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_tag_iter</span><span class="o">.</span><span class="n">next</span><span class="p">())</span>    <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+       <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">numsyl</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>           <span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+  </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-52'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-52'>#</a>
+      </div>
+      <p>Finalize the MIDI generation.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">__midiend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">update_time</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">end_of_track</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midi</span><span class="o">.</span><span class="n">eof</span><span class="p">()</span>
+
+  
+  </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-53'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-53'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">openTokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-54'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-54'>#</a>
+      </div>
+      <p>This is a clunky and kludgy data cleaning step; however, it really 
+depends upon the source material, so we'll just put in some default 
+logic that should work in most cases.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">tokenizedWords</span> <span class="o">=</span> <span class="n">WhitespaceTokenizer</span><span class="p">()</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">sanitizedWords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokenizedWords</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;&#39;&quot;</span> <span class="ow">and</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;&#39;&quot;</span><span class="p">:</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;&#39;&quot;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[.,!;?&quot;]&#39;</span><span class="p">)</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">sanitizedWords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="p">[</span><span class="n">sanitizedWords</span><span class="p">,</span> <span class="n">words</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>    </pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-55'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-55'>#</a>
+      </div>
+      <p>Returns the number of syllables in the word.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">numsyl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span> 
+    <span class="k">try</span><span class="p">:</span>
+      <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">isdigit</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()]]</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-56'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-56'>#</a>
+      </div>
+      <p>Returns all nGrams of length <code>len</code>.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">ngramFinder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">len</span><span class="p">):</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ngrams</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">,</span> <span class="nb">len</span><span class="p">):</span>    
+      <span class="n">a</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+      <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+      <span class="k">except</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">match</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">match</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:ngramFinder </span><span class="si">%s</span><span class="s"> : </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">s</span><span class="p">),</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">match</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-57'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-57'>#</a>
+      </div>
+      <p>Ostensibly, this would find all rhymes, although I am not 100%
+sure how to tackle this one... saving for later.
+See <a href="http://www.mit.edu/~6.863/spring2011/nltk/ch2-3.pdf">this paper</a> for more details.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">rhymeFinder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">tokenHash</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">:</span>
+      <span class="n">tokenHash</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">entries</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">cmudict</span><span class="o">.</span><span class="n">entries</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">tokenHash</span><span class="p">[</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
+          <span class="n">tokenHash</span><span class="p">[</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-58'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-58'>#</a>
+      </div>
+      <p>Utilizes NLTK's pseudo-text generation ability to create text in 
+a similar style as the source text.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">generatePseudoText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">textlen</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:generatePseudoText </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">textlen</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-59'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-59'>#</a>
+      </div>
+      <p>Generate a JSON data file containing the statistics for the words
+in the source file. Will be consumed by JS-visualization programs.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">generateJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">varname</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pos_tag_iter</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos</span> <span class="k">for</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_tags</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">varname</span><span class="p">:</span>
+      <span class="n">varname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span>
+
+    <span class="n">js</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+      <span class="k">try</span><span class="p">:</span>
+        <span class="n">mwi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">mwi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>    
+          <span class="k">pass</span>
+      <span class="k">except</span><span class="p">:</span>     
+        <span class="n">found</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">mwi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">midiwordinfo</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">mwi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mwi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">found</span>
+        
+      <span class="n">mwi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="n">js</span> <span class="o">+=</span> <span class="p">(</span><span class="s">&#39;{&quot;word&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;fullword&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;index&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;count&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;wordindex&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;,</span><span class="se">\</span>
+<span class="s">               &quot;noteindex&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;numsyl&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;pos&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;},</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span>
+        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">alltokens</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\\\&quot;</span><span class="s">&quot;</span><span class="p">),</span> <span class="n">mwi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">mwi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">getAlgoFunc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s">&#39;algo&#39;</span><span class="p">])(</span><span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">startnote</span><span class="p">,</span> <span class="n">mwi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">True</span><span class="p">),</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">numsyl</span><span class="p">(</span><span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_tag_iter</span><span class="o">.</span><span class="n">next</span><span class="p">()))</span>
+
+    <span class="n">js</span> <span class="o">=</span> <span class="s">&#39;[</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">]&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">js</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:generateJSON </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">%</span><span class="n">js</span><span class="p">)</span>    
+    <span class="bp">self</span><span class="o">.</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.json&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">js</span><span class="p">)</span>
+    
+    <span class="n">ngramJSON</span> <span class="o">=</span> <span class="s">&#39;[</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">printSortedNgrams</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">&#39;javascript&#39;</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">_ngrams.json&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">ngramJSON</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">js</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-60'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-60'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">printAllNgrams</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:printAllNgrams ----------------- </span><span class="si">%s</span><span class="s"> ----------------</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">%</span><span class="n">n</span><span class="p">)</span>
+      <span class="n">ng</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ngramFinder</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">printSortedNgrams</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-61'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-61'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">printSortedNgrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">returnJSON</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">returnJSON</span><span class="p">:</span>
+          <span class="n">words</span> <span class="o">=</span> <span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span>
+          <span class="n">ret</span> <span class="o">+=</span> <span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">count</span><span class="se">\&quot;</span><span class="s">:</span><span class="si">%s</span><span class="s">,</span><span class="se">\&quot;</span><span class="s">words</span><span class="se">\&quot;</span><span class="s"> : [</span><span class="si">%s</span><span class="s">]},</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">words</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:printAllNgrams </span><span class="si">%s</span><span class="s"> : </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allmatch</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">s</span><span class="p">),</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-62'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-62'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">printAllConcordance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="s">&quot;!&quot;</span><span class="p">,</span> <span class="s">&quot;?&quot;</span><span class="p">,</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">])):</span>
+      <span class="n">cc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_concordance</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;poemparser:printAllConcordance ----------------- </span><span class="si">%s</span><span class="s"> ----------------</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">cc</span><span class="p">))</span>
+      <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;concord&#39;</span><span class="p">]:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">dumpfile</span><span class="p">(</span><span class="s">&#39;concordances&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-63'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-63'>#</a>
+      </div>
+      <p>Pretty-parsing for concordance output.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">get_concordance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span> 
+    <span class="n">half_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> 
+    <span class="n">context</span> <span class="o">=</span> <span class="n">width</span><span class="o">/</span><span class="mi">4</span> <span class="c"># approx number of words of context </span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">concordance</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">offsets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">_concordance_index</span><span class="o">.</span><span class="n">offsets</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">offsets</span><span class="p">:</span> 
+      <span class="n">lines</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">offsets</span><span class="p">))</span> 
+
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">lines</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span> 
+          <span class="k">break</span> 
+
+        <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="n">half_width</span> <span class="o">+</span> 
+            <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">_concordance_index</span><span class="o">.</span><span class="n">_tokens</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">context</span><span class="p">:</span><span class="n">i</span><span class="p">]))</span> 
+        <span class="n">right</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">_concordance_index</span><span class="o">.</span><span class="n">_tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">context</span><span class="p">])</span> 
+        <span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">[</span><span class="o">-</span><span class="n">half_width</span><span class="p">:]</span> 
+        <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="p">[:</span><span class="n">half_width</span><span class="p">]</span> 
+        <span class="n">ret</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">  </span><span class="si">%s</span><span class="s">  </span><span class="si">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">-=</span> <span class="mi">1</span> 
+
+    <span class="k">else</span><span class="p">:</span> 
+      <span class="k">pass</span>  
+    <span class="k">return</span> <span class="n">ret</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-64'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-64'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;verbose&#39;</span><span class="p">]:</span>
+      <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span><span class="n">msg</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-65'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-65'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>  <span class="k">def</span> <span class="nf">dumpfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+      <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">generate_files</span><span class="p">:</span>
+      <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+      <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-66'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-66'>#</a>
+      </div>
+      <p><strong>Main.</strong></p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;dataset&#39;</span><span class="p">:</span><span class="s">&#39;picasso&#39;</span><span class="p">,</span> <span class="s">&#39;verbose&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span> <span class="s">&#39;concord&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">}</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opts</span><span class="p">,</span> <span class="n">_args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&quot;d:v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;dataset=&quot;</span><span class="p">])</span>
+    <span class="k">except</span> <span class="n">getopt</span><span class="o">.</span><span class="n">GetoptError</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Usage: python parser.py -v --concord --dataset &#39;greeneggs&#39;&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">o</span> <span class="o">==</span> <span class="s">&quot;-v&quot;</span><span class="p">:</span>
+            <span class="n">args</span><span class="p">[</span><span class="s">&#39;verbose&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">o</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&quot;--concord&quot;</span><span class="p">):</span>
+            <span class="n">args</span><span class="p">[</span><span class="s">&#39;concord&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">o</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&quot;-d&quot;</span><span class="p">,</span> <span class="s">&quot;--dataset&quot;</span><span class="p">):</span>
+            <span class="n">args</span><span class="p">[</span><span class="s">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>        
+
+    <span class="n">generate_files</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">pp</span> <span class="o">=</span> <span class="n">PoemParser</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;dataset&#39;</span><span class="p">])</span>
+    <span class="n">pp</span><span class="o">.</span><span class="n">runAll</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

@@ -10,7 +10,6 @@ tags:
 bgcolor: 0091d2
 image: /images/projects/moleskine/moleskine.jpg
 shoutout: "Please provide a notebook for those of us with fairly balanced right and left hemispheres &mdash; that is, I desire a Moleskine notebook that is a combination of your Plain and Squared styles."
-sitename: kiddphunk
 fbcomments: false
 ---
 Dear Moleskine,

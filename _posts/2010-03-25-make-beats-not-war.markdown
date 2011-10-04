@@ -14,7 +14,6 @@ topimage: /images/projects/robot/robot_mini.jpg
 topimagelink: /images/projects/robot/robot_large.jpg
 bottomimage: /images/projects/robot/robot_detail.jpg
 shoutout: "This robot has self-assembled completely out of musical instruments (except for the fan mohawk and rocket parts) and she is currently dropping some serious sonic science."
-sitename: kiddphunk
 fbcomments: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>

@@ -16,7 +16,6 @@ topimage: /images/projects/portfolio/portfolio_mini.jpg
 topimagelink: /portfolio/2009/
 bottomimage: /images/projects/portfolio/portfoliodetail.jpg
 shoutout: "I finally decided to create an interactive portfolio visualization that would satisfy my OWN curiosity as to the overall landscape of projects I have worked on over the years."
-sitename: kiddphunk
 fbcomments: false
 ---
 <img class='feedimg' src='{{page.topimage}}'>

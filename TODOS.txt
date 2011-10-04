@@ -11,3 +11,7 @@ Add chartbeat metrics
 Verify feedburner working - both cnamed sites
 
 Verify google analytics working
+
+add tags / sections / etc
+
+left/right padding/margins on header

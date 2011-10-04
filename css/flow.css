@@ -41,11 +41,23 @@ pre code {
   padding: 0 0 10px 20px;
 }
 
-a {
+.center {
+  text-align: center;
+}
+
+.link {
+  background: url(../images/boxquote2.png);
+  text-decoration: underline;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.link, a {
   color: #138fe2;
 }
 
 a img {
+  background: none;
   border: solid 2px #138fe2;
   padding: 2px;
   margin-left: -4px;
@@ -281,7 +293,7 @@ a img {
   margin-top: 40px;
 }
 .singlepost .innerpostcontent {
-  margin-top: -26px;
+  margin-top: -20px;
 }
 
 #aboutimgs {
@@ -534,7 +546,12 @@ body {
   position: relative;
 }
 .postcontent p {
-  font-size: 1.5em;
+  font-size: 14px;
+}
+
+.quote {
+  background: url(../images/boxquote2.png);
+  padding: 10px;
 }
 
 .innerpostcontent {
@@ -625,6 +642,7 @@ body {
   width: 750px;
   margin: 0;
   padding-bottom: 0px;
+  overflow: hidden;
 }
 
 /*
@@ -682,6 +700,10 @@ h3 {
   font-size: 20px;
   font-weight: normal;
   padding-left: 10px;
+}
+
+#content h1 {
+  font-weight: bold;
 }
 
 #content h2 {
@@ -783,6 +805,10 @@ h3 {
   width: 750px;
   height: 250px;
   margin-left: 0px;
+}
+
+.fullimage {
+  margin-left: -280px;
 }
 
 h5 {
@@ -1505,5 +1531,9 @@ pre code {
 
 .trackcomment {
   width: 100%;
-  text-align: right;
+  /*    text-align:right;
+      padding-right:10px;
+  */
+  text-align: center;
+  margin-left: 20px;
 }

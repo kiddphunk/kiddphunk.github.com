@@ -18,7 +18,6 @@ topimage: /images/projects/delicious/delicious_mini.jpg
 topimagelink: http://mandalabrot.net/delicious/
 bottomimage: /images/projects/delicious/delicious_detail.jpg
 shoutout: "A set of visualizations and explorations into link-spaces in the del.icio.us collaborative bookmarking network."
-sitename: kiddphunk
 fbcomments: false
 aboutpage: true
 ---
