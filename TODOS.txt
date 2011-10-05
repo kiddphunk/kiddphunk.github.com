@@ -1,6 +1,11 @@
-Add hacker news button + other likes....
+fix top bar stripe
 
-Separate blog from other site
+fix kiddphunk header bar image
+
+
+
+
+Add hacker news button + other likes....
 
 Add back BPCL header animation
 
