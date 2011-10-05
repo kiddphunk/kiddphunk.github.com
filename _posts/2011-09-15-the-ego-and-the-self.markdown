@@ -9,9 +9,9 @@ tags:
 tools: [Photoshop]
 credits: [Austin Chang (custom carrot photo)]
 bgcolor: d75227
-image: /images/projects/carrot/carrot.jpg
-topimage: /images/projects/carrot/carrot_mini.jpg
-topimagelink: /images/projects/carrot/carrot_large.jpg
+image: http://kiddphunk.com/images/projects/carrot/carrot.jpg
+topimage: http://kiddphunk.com/images/projects/carrot/carrot_mini.jpg
+topimagelink: http://kiddphunk.com/images/projects/carrot/carrot_large.jpg
 shoutout: "At least this is how I see it..."
 fbcomments: true
 ---

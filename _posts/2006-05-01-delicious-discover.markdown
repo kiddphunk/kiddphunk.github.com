@@ -13,17 +13,17 @@ tools: [Processing (Java), Perl, CSS/HTML, Photoshop, delicious.com]
 print: [SEED Magazine • 2006, Visual Complexity - Mapping Patterns of Information • 2011]
 web: [visualcomplexity.com • 2006, infosthetics.com • 2006, NOTCOT.org • 2006]
 bgcolor: 82298d
-image: /images/projects/delicious/delicious.jpg
-topimage: /images/projects/delicious/delicious_mini.jpg
+image: http://kiddphunk.com/images/projects/delicious/delicious.jpg
+topimage: http://kiddphunk.com/images/projects/delicious/delicious_mini.jpg
 topimagelink: http://mandalabrot.net/delicious/
-bottomimage: /images/projects/delicious/delicious_detail.jpg
+bottomimage: http://kiddphunk.com/images/projects/delicious/delicious_detail.jpg
 shoutout: "A set of visualizations and explorations into link-spaces in the del.icio.us collaborative bookmarking network."
 fbcomments: false
 aboutpage: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
-[View project](http://mandalabrot.net/delicious) / [(PDF)](/images/projects/delicious/del.icio.us.discover.pdf)
+[View project](http://mandalabrot.net/delicious) / [(PDF)](http://kiddphunk.com/images/projects/delicious/del.icio.us.discover.pdf)
 
 **del.icio.us discover** is a set of visualizations and explorations into link-spaces in the del.icio.us collaborative bookmarking network. It was created with Processing and Perl, using historical data gathered in early March 2006.
 	

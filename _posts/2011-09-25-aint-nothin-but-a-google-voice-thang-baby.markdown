@@ -9,9 +9,9 @@ tags:
     - life
 tools: [Google Voice, OS X Speech Synthesis, Ableton Live]
 bgcolor: 5c3030
-image: /images/projects/gvthang/gvthang.jpg
-bottomimage: /images/projects/gvthang/gvthangdetail.jpg
-track: /images/projects/gvthang/Nothin'%20but%20a%20'G(oogle%20voice)'%20Thang.mp3
+image: http://kiddphunk.com/images/projects/gvthang/gvthang.jpg
+bottomimage: http://kiddphunk.com/images/projects/gvthang/gvthangdetail.jpg
+track: http://kiddphunk.com/images/projects/gvthang/Nothin'%20but%20a%20'G(oogle%20voice)'%20Thang.mp3
 tracknote: Not quite there.
 shoutout: "I propose this as a standard test for end-to-end speech recognition to &#10145; speech synthesis: The 'G' Thang Benchmark."
 fbcomments: true
@@ -35,7 +35,7 @@ I recently got the urge to call up my Google Voice number and leave a message to
 **Finally I would drop the generated vocals over the original instrumental track and compare to the original track from 1993. I propose this as a standard test for end-to-end speech recognition to &#10145; speech synthesis: <em>The 'G' Thang Benchmark.</em>**
 
 
-Alas, the days of Snoop reading us our morning newsfeeds is far away; for the most part [the translation](/images/projects/gvthang/GV_translation_orig.rtf) is a far cry from [the original](/images/projects/gvthang/orig_words_raw.txt), although there are some funny interpretations:
+Alas, the days of Snoop reading us our morning newsfeeds is far away; for the most part [the translation](http://kiddphunk.com/images/projects/gvthang/GV_translation_orig.rtf) is a far cry from [the original](http://kiddphunk.com/images/projects/gvthang/orig_words_raw.txt), although there are some funny interpretations:
 
 	"And before me dig out a bitch / 
 	I have ta' find a contraceptive"		

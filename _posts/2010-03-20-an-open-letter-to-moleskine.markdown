@@ -8,7 +8,7 @@ tags:
     - pixels
     - life
 bgcolor: 0091d2
-image: /images/projects/moleskine/moleskine.jpg
+image: http://kiddphunk.com/images/projects/moleskine/moleskine.jpg
 shoutout: "Please provide a notebook for those of us with fairly balanced right and left hemispheres &mdash; that is, I desire a Moleskine notebook that is a combination of your Plain and Squared styles."
 fbcomments: false
 ---
@@ -23,7 +23,7 @@ that is, I desire a Moleskine notebook that is a combination of your *[Plain](ht
 
 Here &mdash; I have taken the liberty of mocking one up:
 
-![moleskine - kiddphunk corpus callosum edition](/images/projects/moleskine/moleskine_mock_s.jpg "bpcl_img_moleskin")
+![moleskine - kiddphunk corpus callosum edition](http://kiddphunk.com/images/projects/moleskine/moleskine_mock_s.jpg "bpcl_img_moleskin")
 
 While the binding complexity may increase a tad, I believe the end product is well worth it and I will order a baker's dozen the moment they are released.
 

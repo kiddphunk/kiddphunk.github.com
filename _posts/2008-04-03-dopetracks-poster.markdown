@@ -14,17 +14,17 @@ tags:
 tools: [Processing (Java), ActionScript]
 credits: [Ron Kurti (final poster design + Flash coding)]
 bgcolor: 666666
-image: /images/projects/dopetracks/dopetracks.jpg
-topimage: /images/projects/dopetracks/dopetracks_mini.jpg
-topimagelink: /images/projects/dopetracks/dopetracks_large.jpg
-bottomimage: /images/projects/dopetracks/dopetracks_detail.jpg
+image: http://kiddphunk.com/images/projects/dopetracks/dopetracks.jpg
+topimage: http://kiddphunk.com/images/projects/dopetracks/dopetracks_mini.jpg
+topimagelink: http://kiddphunk.com/images/projects/dopetracks/dopetracks_large.jpg
+bottomimage: http://kiddphunk.com/images/projects/dopetracks/dopetracks_detail.jpg
 shoutout: "5,485 names are contained within this visualization on the DopeTracks one-year anniversary poster."
 fbcomments: yes
 aboutpage: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
-[View larger image](/images/projects/dopetracks/dopetracks_large.jpg)
+[View larger image](http://kiddphunk.com/images/projects/dopetracks/dopetracks_large.jpg)
 
 
 I was commissioned to brainstorm and develop an image for the [DopeTracks.com](http://dopetracks.com) one-year anniversary commemorative poster that incorporated the names of all of their active users. 
