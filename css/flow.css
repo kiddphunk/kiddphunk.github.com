@@ -293,7 +293,7 @@ a img {
   margin-top: 40px;
 }
 .singlepost .innerpostcontent {
-  margin-top: -10px;
+  margin-top: 0px;
 }
 
 #aboutimgs {
@@ -633,12 +633,12 @@ body {
 }
 
 .container {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
   width: 750px;
   margin: 0;
   padding-bottom: 0px;

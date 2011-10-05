@@ -296,7 +296,7 @@ a img {
         margin-top:40px;
     }
     .innerpostcontent {
-        margin-top: -10px;
+        margin-top: 0px;
     }    
 }
 #aboutimgs {
@@ -579,7 +579,7 @@ body {
 }
 
 .container {
-    @include border-radius(4px);
+    @include border-radius(0);
     width:750px;
     margin:0;
     padding-bottom:0px;
