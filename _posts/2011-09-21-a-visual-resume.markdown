@@ -16,6 +16,7 @@ topimagelink: http://beatspixelscodelife.com/resume/ian_timourian_resume_Fall201
 bottomimage: http://kiddphunk.com/images/projects/resume/resumedetail.jpg
 shoutout: "I finally decided to recast my resume with more data visualization&mdash;I am, after all, an Information Visualist."
 fbcomments: false
+skipindex: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 

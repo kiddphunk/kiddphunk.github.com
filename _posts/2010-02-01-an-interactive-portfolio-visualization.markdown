@@ -17,6 +17,7 @@ topimagelink: http://beatspixelscodelife.com/portfolio/2009/
 bottomimage: http://kiddphunk.com/images/projects/portfolio/portfoliodetail.jpg
 shoutout: "I finally decided to create an interactive portfolio visualization that would satisfy my OWN curiosity as to the overall landscape of projects I have worked on over the years."
 fbcomments: false
+skipindex: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 

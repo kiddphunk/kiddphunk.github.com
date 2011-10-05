@@ -7,5 +7,7 @@ biopage: true
 ---
 
  {% for post in site.posts %}
+   {% if post.skipindex != true %}
 	{% include common/index_list.html %}
+   {% endif %}
  {% endfor %}
