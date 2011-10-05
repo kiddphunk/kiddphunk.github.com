@@ -11,8 +11,8 @@ tools: [Google Voice, OS X Speech Synthesis, Ableton Live]
 bgcolor: 5c3030
 image: http://kiddphunk.com/images/projects/gvthang/gvthang.jpg
 bottomimage: http://kiddphunk.com/images/projects/gvthang/gvthangdetail.jpg
-track: http://kiddphunk.com/images/projects/gvthang/Nothin'%20but%20a%20'G(oogle%20voice)'%20Thang.mp3
-tracknote: Not quite there.
+tracks: [http://kiddphunk.com/images/projects/gvthang/Nothin'%20but%20a%20'G(oogle%20voice)'%20Thang.mp3]
+tracknotes: [Not quite there.]
 shoutout: "I propose this as a standard test for end-to-end speech recognition to &#10145; speech synthesis: The 'G' Thang Benchmark."
 fbcomments: true
 halfsize: true
