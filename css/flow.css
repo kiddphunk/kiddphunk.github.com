@@ -1061,7 +1061,8 @@ a .indeximg {
   background-color: #000;
   border: 0px;
   width: 1024px;
-  height: 169px;
+  height: 158px;
+  margin-bottom: 10px;
 }
 #header_kiddphunk a {
   border: 0;

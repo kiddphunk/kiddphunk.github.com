@@ -987,7 +987,8 @@ $headerThinHeight: 150px;
 
 #header_kiddphunk {
     @include genericheader;
-    height: $headerThinHeight + 19px;
+    height: $headerThinHeight + 8px;
+    margin-bottom:10px;
     a {
         @include noborderpadding;
         @include pointer;
