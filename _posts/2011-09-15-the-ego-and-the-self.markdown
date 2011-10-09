@@ -14,6 +14,7 @@ topimage: http://kiddphunk.com/images/projects/carrot/carrot_mini.jpg
 topimagelink: http://kiddphunk.com/images/projects/carrot/carrot_large.jpg
 shoutout: "At least this is how I see it..."
 fbcomments: true
+share: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 

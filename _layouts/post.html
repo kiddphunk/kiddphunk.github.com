@@ -30,15 +30,47 @@ layout: flow
 
                         {{ content }}
 
+
+				{% if page.share %}
+	                    <div class="prepend-7 span-10 last">
+							<p></p>
+							<h1>
+								Share 
+							</h1>
+						</div>
+				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style " style="background-color:#{{page.bgcolor}}">
+				<p>
+				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+				<a class="addthis_button_tweet"></a>
+				<a class="addthis_button_facebook_like"></a>
+				<a class="addthis_button_hackernews"></a>
+				<a class="addthis_button_tumblr"></a>
+				<a class="addthis_button_delicious"></a>
+
+				<a class="addthis_button_preferred_1"></a>
+				<a class="addthis_button_preferred_2"></a>
+				<a class="addthis_button_preferred_3"></a>
+				<a class="addthis_button_preferred_4"></a>
+				<a class="addthis_button_preferred_5"></a>
+				<a class="addthis_button_preferred_6"></a>
+				<a class="addthis_button_preferred_7"></a>
+				<a class="addthis_button_compact"></a>
+				<a class="addthis_counter addthis_bubble_style"></a>
+				</p>
+				</div>
+				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e76612466d8a38d"></script>
+				<!-- AddThis Button END -->
+				{% endif %}
 	
 				{% if page.fbcomments %}
 					<p></p>
 
 				<hr>
 	                    <div class="prepend-7 span-10 last">
-							<h3>
-								<fb:comments-count href={{ page.url }}></fb:comments-count> comments 
-							</h3>
+							<h1>
+								<fb:comments-count href={{site.commenturl}}{{page.url}}></fb:comments-count> comments 
+							</h1>
 						</div>
 				<hr>
 				<div id="fb-root"></div>
@@ -50,7 +82,7 @@ layout: flow
 				  fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));</script>
 
-				<div class="fb-comments" data-href="{{ page.url }}" data-num-posts="2" data-width="500"></div>
+				<div class="fb-comments" data-href="{{site.commenturl}}{{page.url}}" data-num-posts="2" data-width="500"></div>
 			{% endif %}
 
 <p></p>

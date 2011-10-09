@@ -4,9 +4,10 @@ paginate: 10
 permalink: pretty
 sitename: kiddphunk
 
-feedburner.id: 'beatspixelscodelife/kJuy'
+#feedburner.id: 'beatspixelscodelife/kJuy'
 google_analytics.account: 'UA-288188-1'
 
-#url: http://kiddphunk.com
+
+commenturl: http://kiddphunk.com
 
 exclude: tmp, test, bin

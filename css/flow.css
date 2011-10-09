@@ -774,17 +774,24 @@ h3 {
 }
 
 .addthis_button_hackernews {
-  height: 18px;
-  width: 18px;
-  padding-right: 12px;
+  /*    height:18px;
+      width:18px;
+  */
+  /*    padding-right:12px;*/
+}
+
+.addthis_button_print,
+.addthis_button_email {
+  display: none;
 }
 
 .addthis_button_google_plusone {
-  margin-top: -2px;
+  /*    margin-top:-2px;    */
 }
 
 .addthis_button_tweet {
-  margin-top: -2px;
+  /*    margin-top:-2px;*/
+  margin-right: 20px;
 }
 
 .fb-like {
@@ -793,7 +800,21 @@ h3 {
 }
 
 .addthis_toolbox {
-  float: left;
+  float: right;
+  padding: 0px;
+  padding-left: 0px;
+  padding-top: 0px;
+}
+.addthis_toolbox p {
+  background: url(../images/boxquote.png);
+  width: 710px;
+  height: 20px;
+  padding: 20px;
+  margin: 0px;
+  border-top: 1px solid #ddd;
+}
+.addthis_toolbox p .addthis_button_delicious:first-child {
+  margin-right: 40px;
 }
 
 .righttext {
@@ -1190,6 +1211,7 @@ em {
 }
 #bpcl .post {
   margin-left: -4px;
+  background-color: #eee;
 }
 #bpcl .postcontent {
   margin-left: 4px;
@@ -1205,6 +1227,7 @@ em {
 }
 #bpcl #header {
   background-color: #f5f5f5;
+  background-color: #eee;
   width: 100%;
 }
 #bpcl #header #flower {
@@ -1276,6 +1299,7 @@ em {
 }
 #bpcl #about {
   width: 760px;
+  border-bottom: 10px solid #EEE;
 }
 #bpcl #about .toolbox {
   color: #222;

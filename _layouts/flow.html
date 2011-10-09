@@ -5,7 +5,9 @@
   <title>{%if page.sitetitle%}{{page.sitetitle}}{%else%}kiddphunk{%endif%} | {{ page.title }}</title>
 
 {% if page.description %}
+<!--
     <meta name="description" content="{{ page.description }}" />
+-->
 {% endif %}
 
 
@@ -44,6 +46,13 @@
     <link rel="stylesheet" media="screen" href="/css/skin/circle.skin/circle.player.css" type="text/css" />
 
     <script src="/js/lib/jquery-1.6.1.min.js"></script>
+
+    <script type="text/javascript">
+		// if ((navigator.userAgent.match(/iPhone/i)) || 
+		//     (navigator.userAgent.match(/iPod/i)))
+		//    				if (document.cookie.indexOf("iphone_redirect=false") == -1) 
+		// 			window.location = "/iphone"
+	</script>
 
 {% if site.feedburner %}
     <link href="http://feeds.feedburner.com/{{ site.feedburner.id }}" rel="alternate" title="{%if page.sitetitle%}{{page.sitetitle}}{%else%}kiddphunk{%endif%} | {{ page.title }}" type="application/atom+xml" />

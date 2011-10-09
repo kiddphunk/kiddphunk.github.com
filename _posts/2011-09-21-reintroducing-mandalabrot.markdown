@@ -19,6 +19,7 @@ topimagelink: http://gigapan.org/gigapans/fullscreen/79494/
 bottomimage: http://kiddphunk.com/images/projects/sheep/sheepdetail.jpg
 topnote: ""
 shoutout: ""
+share: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 

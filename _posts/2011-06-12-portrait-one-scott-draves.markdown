@@ -18,6 +18,7 @@ topnote: "This is first in a series of posters I am creating that commemorate in
 shoutout: "The mosaic was generated from a selection of over 10,000 seed images; the sheep here are from Generation 243 and the poster is approximately 1 Gigapixel in size."
 #note: "Zoomed detail (full-size):"
 fbcomments: true
+share: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
