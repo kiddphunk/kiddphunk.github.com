@@ -647,6 +647,9 @@ body {
 .container p {
   font-size: 16px;
 }
+.container pre, .container code, .container tt {
+  font-size: 14px;
+}
 
 /*
  * Font definitions

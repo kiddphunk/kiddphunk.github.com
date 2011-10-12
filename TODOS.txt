@@ -1,7 +1,5 @@
 iphone/small display version
 
-Add hacker news button + other likes....
-
 Add back BPCL header animation
 
 Add tribalpixel, galactivision sites with pictures and music
