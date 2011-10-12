@@ -644,6 +644,9 @@ body {
   padding-bottom: 0px;
   overflow: hidden;
 }
+.container p {
+  font-size: 16px;
+}
 
 /*
  * Font definitions
