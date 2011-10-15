@@ -443,6 +443,10 @@ body {
   */
 }
 
+.divider {
+  color: #666;
+}
+
 .beats {
   color: #ff6600;
 }
