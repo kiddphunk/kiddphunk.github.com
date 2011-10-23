@@ -9,3 +9,7 @@ portfolio/*
 bin/*
 
 tmp/*
+
+compiler/*
+
+jsfiles.txt

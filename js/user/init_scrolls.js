@@ -1,12 +1,10 @@
 var destroyScrolls, initScrolls, refreshScrolls, resizeScrolls;
 initScrolls = function() {
   return window.contentScroll = new iScroll('scrollContent', {
-    useTransition: true
+    useTransition: true,
+    snap: 'li'
   });
 };
-({
-  snap: 'li'
-});
 resizeScrolls = function() {
   return refreshScrolls();
 };

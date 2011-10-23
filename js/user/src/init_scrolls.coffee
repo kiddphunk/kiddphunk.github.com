@@ -1,9 +1,7 @@
 initScrolls = ->
     window.contentScroll = new iScroll 'scrollContent', {
         useTransition:  yes
-#		hScrollbar:     false
-#		vScrollbar:     false
-		snap:           'li'
+        snap:           'li'
     }
  
  
