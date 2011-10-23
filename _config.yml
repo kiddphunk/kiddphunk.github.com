@@ -3,10 +3,8 @@ lsi: false
 paginate: 10
 permalink: pretty
 sitename: kiddphunk
-
 #feedburner.id: 'beatspixelscodelife/kJuy'
-google_analytics.account: 'UA-288188-1'
-
+google_analytics_account: 'UA-288188-1'
 
 commenturl: http://kiddphunk.com
 
