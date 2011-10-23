@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: remixing escher
 layout: project
 category: experiments
