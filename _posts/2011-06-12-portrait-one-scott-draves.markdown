@@ -12,7 +12,7 @@ credits: [Jasmine Ceniceros (source photo)]
 bgcolor: 4d0a00
 image: http://kiddphunk.com/images/projects/sheep/sheep.jpg
 topimage: http://kiddphunk.com/images/projects/sheep/dravesposter_mini.jpg
-topimagelink: http://gigapan.org/gigapans/fullscreen/79494/
+topimagelink: http://gigapan.org/gigapans/79494/
 bottomimage: http://kiddphunk.com/images/projects/sheep/sheepdetail.jpg
 topnote: "This is first in a series of posters I am creating that commemorate influential digital artists."
 shoutout: "The mosaic was generated from a selection of over 10,000 seed images; the sheep here are from Generation 243 and the poster is approximately 1 Gigapixel in size."
@@ -22,7 +22,7 @@ share: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
-[View the full-sized poster](http://gigapan.org/gigapans/fullscreen/79494)
+[View the full-sized poster](http://gigapan.org/gigapans/79494)
 
 
 Scott Draves, aka Spot.
