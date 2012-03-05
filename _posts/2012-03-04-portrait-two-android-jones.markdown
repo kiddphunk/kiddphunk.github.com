@@ -14,7 +14,7 @@ topimage: http://kiddphunk.com/images/projects/android/poster_mini.jpg
 topimagelink: http://gigapan.org/gigapans/97815/
 bottomimage: http://kiddphunk.com/images/projects/android/detail2.jpg
 topnote: "This is the second in a series of posters commemorating influential digital artists."
-shoutout: "The mosaic was generated from a selection of over 850 seed images &mdash; fragments of Andrew's digital output."
+shoutout: "The mosaic was generated from a selection of over 850 seed images &mdash; fragments of Andrew's digital dreams."
 fbcomments: true
 share: true
 ---
