@@ -219,11 +219,10 @@ a img {
 }
 
 .post {
-  -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  -o-border-radius: 0;
+  -moz-border-radius: 0;
   -ms-border-radius: 0;
-  -khtml-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
   width: 768px;
   float: left;
@@ -240,11 +239,10 @@ a img {
   padding-top: 4px;
   padding-right: 10px;
   position: relative;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   right: 18px;
   top: -46px;
@@ -260,17 +258,15 @@ a img {
   padding-top: 4px;
   padding-right: 10px;
   position: relative;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
-  -moz-border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
-  -o-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
   -ms-border-radius: 4px 4px 0 0;
-  -khtml-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
   right: 8px;
   top: -292px;
@@ -477,20 +473,18 @@ body {
   height: 100%;
   -moz-background-size: cover;
   background-size: cover;
-  -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  -o-border-radius: 0;
+  -moz-border-radius: 0;
   -ms-border-radius: 0;
-  -khtml-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
 }
 
 .post .innerWrapper {
-  -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  -o-border-radius: 0;
+  -moz-border-radius: 0;
   -ms-border-radius: 0;
-  -khtml-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
   position: relative;
 }
@@ -552,11 +546,10 @@ body {
 
 .innerpostcontent {
   background-color: white;
-  -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
-  -o-border-radius: 0px;
+  -moz-border-radius: 0px;
   -ms-border-radius: 0px;
-  -khtml-border-radius: 0px;
+  -o-border-radius: 0px;
   border-radius: 0px;
   left: 4px;
   width: 100%;
@@ -582,11 +575,10 @@ body {
 .tagindex .innerpostcontent,
 .categoryindex .innerpostcontent,
 .indexpage .innerpostcontent {
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 .tagindex .post,
@@ -629,11 +621,10 @@ body {
 }
 
 .container {
-  -moz-border-radius: 0;
   -webkit-border-radius: 0;
-  -o-border-radius: 0;
+  -moz-border-radius: 0;
   -ms-border-radius: 0;
-  -khtml-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
   width: 750px;
   margin: 0;
@@ -853,11 +844,10 @@ h5 {
   margin-bottom: 100px;
   background-color: #eeffee;
   color: white;
-  -moz-border-radius: 0 0 4px 0;
   -webkit-border-radius: 0 0 4px 0;
-  -o-border-radius: 0 0 4px 0;
+  -moz-border-radius: 0 0 4px 0;
   -ms-border-radius: 0 0 4px 0;
-  -khtml-border-radius: 0 0 4px 0;
+  -o-border-radius: 0 0 4px 0;
   border-radius: 0 0 4px 0;
 }
 .toolbox a {
@@ -998,10 +988,10 @@ div.contentWrap {
   position: absolute;
   text-decoration: none;
   width: 250px;
-  -moz-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 .github span,
@@ -1014,18 +1004,14 @@ div.contentWrap {
   position: absolute;
   text-align: center;
   width: 250px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
-  -moz-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-  -moz-transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  transition-duration: 1s;
+  -webkit-transition: opacity, 1s;
+  -moz-transition: opacity, 1s;
+  -ms-transition: opacity, 1s;
+  -o-transition: opacity, 1s;
+  transition: opacity, 1s;
 }
 .github span:last-child,
 .comingsoon span:last-child {
@@ -1277,11 +1263,10 @@ em {
   padding: 10px;
   padding-top: 18px;
   font-weight: normal;
-  -moz-border-radius: 0 0 8px 8px;
   -webkit-border-radius: 0 0 8px 8px;
-  -o-border-radius: 0 0 8px 8px;
+  -moz-border-radius: 0 0 8px 8px;
   -ms-border-radius: 0 0 8px 8px;
-  -khtml-border-radius: 0 0 8px 8px;
+  -o-border-radius: 0 0 8px 8px;
   border-radius: 0 0 8px 8px;
 }
 #bpcl #header .resport h3 a:hover {
@@ -1309,16 +1294,14 @@ em {
 }
 #bpcl #about h1 {
   font-size: 1.7em;
-  -moz-box-shadow: white 1px 1px -1px;
   -webkit-box-shadow: white 1px 1px -1px;
-  -o-box-shadow: white 1px 1px -1px;
+  -moz-box-shadow: white 1px 1px -1px;
   box-shadow: white 1px 1px -1px;
 }
 #bpcl #about h2 {
   font-size: 1.8em;
-  -moz-box-shadow: white 1px 1px 11px;
   -webkit-box-shadow: white 1px 1px 11px;
-  -o-box-shadow: white 1px 1px 11px;
+  -moz-box-shadow: white 1px 1px 11px;
   box-shadow: white 1px 1px 11px;
   padding: 0;
 }
@@ -1341,9 +1324,8 @@ em {
   text-shadow: white -1px -1px -1px;
 }
 #bpcl #about p {
-  -moz-box-shadow: white 1px 1px -1px;
   -webkit-box-shadow: white 1px 1px -1px;
-  -o-box-shadow: white 1px 1px -1px;
+  -moz-box-shadow: white 1px 1px -1px;
   box-shadow: white 1px 1px -1px;
 }
 #bpcl #about #content h1 {
@@ -1420,7 +1402,7 @@ em {
     background-color: #eee;
   }
   #bpcl #header {
-    border-left: 4px solid #EEE;
+    border-left: 4px solid whiteSmoke;
     border-right: 4px solid whiteSmoke;
     width: 764px;
     height: 130px;

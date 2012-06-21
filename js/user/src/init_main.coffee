@@ -1,13 +1,16 @@
 $(document) .ready ->    
-
     # Offset the image on any generic letter images.
     $('.genericimg') .each (i, elt) ->
         h = Math.floor Math.random() * -240
         v = Math.floor Math.random() * -350
         $(elt) .css 'background-position':"#{h}px #{v}px"
 
-
     initHeader()
+    
+    $('.galleryimage') .each (i, elt) ->
+        $(elt) .css
+            'cursor': 'pointer'
+
     
     # Scroll to top of article.
     # if $('#indexpage').length is 0

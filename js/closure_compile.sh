@@ -18,7 +18,7 @@ java -jar ../compiler/compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --js
 
 
 # beatspixelscodelife files
-java -jar ../compiler/compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS  --js lib/jquery.animtrans.js --js lib/jquery.isotope.js --js lib/jquery.timer.js --js lib/jquery.imageslicer.js --js lib/iscroll.js --js lib/underscore.js --js lib/underscore.string.js --js lib/jquery.jplayer.js --js lib/circle.player.js --js lib/jquery.grab.js --js lib/jquery.transform.js --js lib/mod.csstransforms.min.js --js user/init_overlays.js --js user/init_header.js --js user/init_isotope.js --js user/init_scrolls.js --js user/init_main.js --js user/init_data.js --js_output_file bpcl_min.js
+#java -jar ../compiler/compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS  --js lib/jquery.animtrans.js --js lib/jquery.isotope.js --js lib/jquery.timer.js --js lib/jquery.imageslicer.js --js lib/iscroll.js --js lib/underscore.js --js lib/underscore.string.js --js lib/jquery.jplayer.js --js lib/circle.player.js --js lib/jquery.grab.js --js lib/jquery.transform.js --js lib/mod.csstransforms.min.js --js user/init_overlays.js --js user/init_header.js --js user/init_isotope.js --js user/init_scrolls.js --js user/init_main.js --js user/init_data.js --js_output_file bpcl_min.js
 
 
 

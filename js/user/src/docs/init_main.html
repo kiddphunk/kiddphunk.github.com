@@ -1,0 +1,85 @@
+<!DOCTYPE html>  <html> <head>   <title>init_main.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               init_main.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">.</span><span class="nx">ready</span> <span class="o">-&gt;</span>    </pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Offset the image on any generic letter images.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.genericimg&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">each</span> <span class="nf">(i, elt) -&gt;</span>
+        <span class="nv">h = </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">240</span>
+        <span class="nv">v = </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">350</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nx">elt</span><span class="p">)</span> <span class="p">.</span><span class="nx">css</span> <span class="s1">&#39;background-position&#39;</span><span class="o">:</span><span class="s2">&quot;#{h}px #{v}px&quot;</span>
+
+    <span class="nx">initHeader</span><span class="p">()</span>
+    
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.galleryimage&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">each</span> <span class="nf">(i, elt) -&gt;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nx">elt</span><span class="p">)</span> <span class="p">.</span><span class="nx">css</span>
+            <span class="s1">&#39;cursor&#39;</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span>
+
+    </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Scroll to top of article.
+if $('#indexpage').length is 0
+    $(window).scrollTo('.postinfo', {duration:1000})</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">indexSizeUp = </span><span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.indeximg&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.genericimg&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">css</span> <span class="s1">&#39;margin-bottom&#39;</span><span class="o">:</span><span class="s1">&#39;0px&#39;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.postinfo&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">addClass</span> <span class="s1">&#39;indexSizeUp&#39;</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>$('.shoutout p') .css 'font-weight':'normal'</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">indexSizeDown = </span><span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.indeximg&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">show</span><span class="p">()</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.genericimg&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">show</span><span class="p">()</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">css</span> <span class="s1">&#39;margin-bottom&#39;</span><span class="o">:</span><span class="s1">&#39;-42px&#39;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.postinfo&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">removeClass</span> <span class="s1">&#39;indexSizeUp&#39;</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>$('.shoutout p') .css 'font-weight':'bold'</p>             </td>             <td class="code">               <div class="highlight"><pre>    </pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>$('.post') .live 'touchend', (e) ->
+    $(e.target) .toggleClass 'notExpanded'
+    if $(e.target) .hasClass 'notExpanded'
+        down $(e.currentTarget)
+    else
+        up $(e.currentTarget)</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.post img&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">each</span> <span class="nf">(i, elt) -&gt;</span></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <pre><code>   return yes
+   down $(elt)
+   up   $(elt)
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <pre><code>       return fixEditorials(e)
+</code></pre>
+
+<p>$(elt) .Touchable() .bind 'tap', (e, touch) ->
+    focus = $(e.target) .parents '.post'
+    $(focus) .toggleClass 'isExpanded'
+    if $(focus) .hasClass 'isExpanded'
+        down $(focus)
+    else
+        up $(focus)
+    top focus</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>$('.post') .live 'click', (e) ->
+    $(e.target) .toggleClass 'notExpanded'
+    if $(e.target) .hasClass 'notExpanded'
+        down $(e.currentTarget)
+    else
+        up $(e.currentTarget)</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">initHeader</span><span class="p">()</span></pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>initOverlays()
+   initIsotope()
+   updateIsotopeLayout '.isoContent', 'straightDown'
+   updateIsotopeLayout '.isoContent', 'straightAcross'</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-11">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-11">&#182;</a>               </div>               <p>document.addEventListener 'touchmove', ((e) -> e.preventDefault()), false</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>initScrolls()</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">fixEditorials = </span><span class="nf">(e) -&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="p">.</span><span class="nx">height</span><span class="p">(</span><span class="mi">125</span><span class="p">)</span>        
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.postinfo&#39;</span><span class="p">)</span>    <span class="p">.</span><span class="nx">css</span> <span class="s1">&#39;top&#39;</span><span class="o">:</span><span class="s1">&#39;78px&#39;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.postcontent&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">css</span> <span class="s1">&#39;top&#39;</span><span class="o">:</span><span class="s1">&#39;125px&#39;</span>
+
+
+
+<span class="nv">top = </span><span class="nf">(target) -&gt;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nv">target  = </span><span class="nx">target</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wrap&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">scrollTo</span> <span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">),</span> <span class="mi">800</span><span class="p">,</span> <span class="o">=&gt;</span> 
+
+
+
+<span class="nv">up = </span><span class="nf">(target=&#39;&#39;) -&gt;</span>
+    <span class="k">if</span> <span class="nx">target</span> 
+        <span class="nv">$target1 = </span><span class="nx">target</span>
+        <span class="nv">$target2 = </span><span class="nx">target</span> <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.postcontent&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">first</span><span class="p">()</span>
+    <span class="k">else</span>
+        <span class="nv">$target1 = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">)</span>
+        <span class="nv">$target2 = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.postcontent&#39;</span><span class="p">)</span>
+
+    <span class="nx">$target2</span> <span class="p">.</span><span class="nx">animate</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="o">:</span><span class="s1">&#39;1px&#39;</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-&gt;</span> 
+
+
+<span class="nv">down = </span><span class="nf">(target=&#39;&#39;) -&gt;</span>
+    <span class="k">if</span> <span class="nx">target</span> 
+        <span class="nv">$target1 = </span><span class="nx">target</span>
+        <span class="nv">$target2 = </span><span class="nx">target</span> <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.postcontent&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nx">first</span><span class="p">()</span>
+    <span class="k">else</span>
+        <span class="nv">$target1 = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">)</span>
+        <span class="nv">$target2 = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.postcontent&#39;</span><span class="p">)</span>
+
+    <span class="nx">$target2</span> <span class="p">.</span><span class="nx">animate</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="o">:</span><span class="s1">&#39;100%&#39;</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-&gt;</span> 
+
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="p">.</span><span class="nx">resize</span> <span class="o">-&gt;</span> </pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>resizeHeader() <br />
+resizeScrolls()
+resizeIsotope()</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
