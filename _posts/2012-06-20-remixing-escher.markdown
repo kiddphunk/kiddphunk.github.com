@@ -11,7 +11,7 @@ bgcolor: 323516
 image: http://kiddphunk.com/images/projects/escher/escher.jpg
 topimage: http://kiddphunk.com/images/projects/escher/escher_mini.jpg
 bottomimage: http://kiddphunk.com/images/projects/escher/escherdetail.jpg
-shoutout: "Escher's natural recursion and geometric patterns meet a fractal remxing"
+shoutout: "Escher's natural recursion and geometric patterns meet a fractal remixing."
 fbcomments: true
 share: true
 ---
