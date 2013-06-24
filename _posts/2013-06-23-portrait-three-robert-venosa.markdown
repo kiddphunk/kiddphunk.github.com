@@ -14,19 +14,17 @@ topimage: http://kiddphunk.com/images/projects/venosa/poster_mini.jpg
 topimagelink: http://gigapan.com/gigapans/133068/
 bottomimage: http://kiddphunk.com/images/projects/venosa/detail2.jpg
 topnote: "This is the third in a series of posters commemorating influential digital and visionary artists."
-shoutout: ""
+shoutout: "A tribute to the great painter of Fantastic Realism."
 fbcomments: true
 share: true
 ---
 <img class='feedimg' src='{{page.topimage}}'>
 
-[View the full-sized poster](http://gigapan.com/gigapans/133068)
+A friend recently suggested I create a portrait of Robert Venosa to celebrate the life and passing of this great visionary artist. So I humbly present portrait #3: a mosaic comprised of a historical merging of his visionary paintings. Thank you Robert for a truly beautiful and inspirational body of work! 
 
+[View the explorable/zoomable full-sized poster](http://gigapan.com/gigapans/133068)
 
-<!--
-The mosaic was generated from a selection of over 850 seed images &mdash; fragments of Andrew's digital dreams.
-Sifting sensual shapes of light and pattern.
-A tribute to the artwork of Andrew Jones, this is a mosaic comprised of a historical merging of his digital art.
-Thank you for all of the magic, Andrew!
--->
 Based on a photo by Helen Davis.
+
+
+
