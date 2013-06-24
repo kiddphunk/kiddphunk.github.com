@@ -8,7 +8,7 @@ tags:
     - pixels
 tools: [MacOSaiX, Photoshop]
 credits: [Helen Davis (source photo)]
-bgcolor: 3c64b9
+bgcolor: 100361
 image: http://kiddphunk.com/images/projects/venosa/detail.jpg
 topimage: http://kiddphunk.com/images/projects/venosa/poster_mini.jpg
 topimagelink: http://gigapan.com/gigapans/133068/
