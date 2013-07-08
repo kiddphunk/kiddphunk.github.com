@@ -11,7 +11,7 @@ credits: [M.C. Escher (source portrait)]
 bgcolor: 333333
 image: http://kiddphunk.com/images/projects/escher2/detail.jpg
 topimage: http://kiddphunk.com/images/projects/escher2/poster_mini.jpg
-topimagelink: http://gigapan.com/gigapans/133068/
+topimagelink: http://gigapan.org/gigapans/134187/
 bottomimage: http://kiddphunk.com/images/projects/escher2/detail2.jpg
 topnote: "This is the fourth in a series of posters commemorating influential digital and visionary artists."
 shoutout: "A tribute to the great drawer of Impossible Constructions."
@@ -22,7 +22,7 @@ share: true
 
 
 
-[View the explorable/zoomable full-sized poster](http://gigapan.com/gigapans/133068)
+[View the explorable/zoomable full-sized poster](http://gigapan.org/gigapans/134187)
 
 Based on a self-portrait by M.C. Escher.
 
