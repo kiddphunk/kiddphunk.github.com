@@ -8,7 +8,7 @@ tags:
     - pixels
 tools: [MacOSaiX, Photoshop]
 credits: [M.C. Escher (source portrait)]
-bgcolor: 100361
+bgcolor: 333333
 image: http://kiddphunk.com/images/projects/escher2/detail.jpg
 topimage: http://kiddphunk.com/images/projects/escher2/poster_mini.jpg
 topimagelink: http://gigapan.com/gigapans/133068/
