@@ -14,7 +14,7 @@ topimage: http://kiddphunk.com/images/projects/escher2/poster_mini.jpg
 topimagelink: http://gigapan.org/gigapans/134187/
 bottomimage: http://kiddphunk.com/images/projects/escher2/detail2.jpg
 topnote: "This is the fourth in a series of posters commemorating influential digital and visionary artists."
-shoutout: "A tribute to the great drawer of Impossible Constructions."
+shoutout: "A tribute to the great illustrator of Impossible Constructions."
 fbcomments: true
 share: true
 ---
