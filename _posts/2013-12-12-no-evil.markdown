@@ -1,0 +1,33 @@
+---
+published: true
+title: see no evil, hear no evil, speak no evil
+layout: project
+category: projects
+tags:
+    - blog
+    - pixels
+tools: [MacOSaiX, Photoshop]
+credits: [Tiana Hunter (model, muse)]
+bgcolor: 333333
+image: http://www.kiddphunk.com/images/projects/noevil/detail.jpg
+topimage: http://www.kiddphunk.com/images/projects/noevil/poster_mini2.jpg
+topimagelink: http://www.kiddphunk.com/images/projects/noevil/poster_mini.jpg
+topimage2: http://www.kiddphunk.com/images/projects/noevil/poster2_mini2.jpg
+topimage2link: http://www.kiddphunk.com/images/projects/noevil/poster2_mini.jpg
+bottomimage: http://www.kiddphunk.com/images/projects/noevil/detail2.jpg
+topnote: "Combining my evolving mosaic technique with the results of a 'See no evil...' photoshoot Tiana and I had done."
+shoutout: "See no evil,<br>Hear no evil,<br>Speak no evil."
+fbcomments: true
+share: true
+---
+<img class='feedimg' src='{{page.topimage}}'>
+
+This was my contribution to this year's Chillin' Productions Holiday Art Show, held at 111 Minna in San Francisco.
+
+<img  src='http://www.kiddphunk.com/images/projects/noevil/gallery.jpg' title='hear no evil'>
+
+Another from the series:
+
+<img class='fullimage' src='{{page.topimage2}}' title='hear no evil'>
+
+
