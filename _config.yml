@@ -8,4 +8,4 @@ google_analytics_account: 'UA-288188-1'
 
 commenturl: http://kiddphunk.com
 
-exclude: tmp, test, bin
+exclude: [tmp, test, bin]
