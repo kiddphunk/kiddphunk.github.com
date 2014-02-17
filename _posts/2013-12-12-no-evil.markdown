@@ -8,7 +8,7 @@ tags:
     - pixels
 tools: [MacOSaiX, Photoshop]
 credits: [Tiana Hunter (model, muse)]
-bgcolor: 333333
+bgcolor: 8f3a28
 image: http://www.kiddphunk.com/images/projects/noevil/detail.jpg
 topimage: http://www.kiddphunk.com/images/projects/noevil/poster_mini2.jpg
 topimagelink: http://www.kiddphunk.com/images/projects/noevil/poster_mini.jpg
@@ -16,7 +16,7 @@ topimage2: http://www.kiddphunk.com/images/projects/noevil/poster2_mini2.jpg
 topimage2link: http://www.kiddphunk.com/images/projects/noevil/poster2_mini.jpg
 bottomimage: http://www.kiddphunk.com/images/projects/noevil/detail2.jpg
 topnote: "Combining my evolving mosaic technique with the results of a 'See no evil...' photoshoot Tiana and I had done."
-shoutout: "See no evil,<br>Hear no evil,<br>Speak no evil."
+shoutout: "Three wise monkeys? She's a wise monkey!"
 fbcomments: true
 share: true
 ---
