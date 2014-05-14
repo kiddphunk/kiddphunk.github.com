@@ -2,7 +2,49 @@
      {% if post.badge != 'comingsoon' %}
        <a href="{{ post.url }}#article">
      {% endif %}
-           {% if post.image %}           	
+
+     {% if post.parallaximage %}            
+        <style>
+          #parallaxbg_{{ post.iid }} {
+            background-image:url({{post.parallaximage}});
+          }
+        </style>
+        <section id="parallax_{{ post.iid }}" class='parallax'>
+        <div id="parallaxbg_{{ post.iid }}"  class='parallaxbg'>
+          <!-- <div class="top"></div> --> 
+          <!-- <div class="bottom"></div> -->
+        </div>
+       <div {% if post.bgcolor %}style='background-color:#{{post.bgcolor}}'{% endif %} id="title_{{post.iid}}" class='postinfo'><a href="{{ post.url }}#article">{{ post.title }}</a>&#8226;<span>{{ post.date | date_to_long_string }}</span></div>          
+
+        <script type="text/javascript">
+          // parallax
+
+          new ScrollScene({
+              triggerElement: "#parallax_{{ post.iid }}",
+              duration: {{post.parallaxduration}}, //3000
+              offset: {{post.parallaxoffset}}+100
+            })
+            .addTo(controller)
+            .triggerHook("onCenter")
+            .setTween(new TimelineMax().add([
+              TweenMax.to("#parallaxbg_{{ post.iid }}", 1, {backgroundPosition: "0 "+{{post.parallaxpercent}}+"%", ease: Linear.easeNone})
+            ]));
+
+          // new ScrollScene({
+          //     triggerElement: "#parallax_{{ post.iid }}",
+          //     duration: 500,
+          //     offset: 550
+          //   })
+          //   .addTo(controller)
+          //   .triggerHook("onEnter")
+          //   .setTween(new TimelineMax().add([
+          //     TweenMax.fromTo("#title_{{ post.iid }}", 1, {opacity: 0, ease: Linear.easeNone}, {opacity: 1, ease: Linear.easeNone})
+          //   ]));
+
+        </script>
+      </section>
+
+           {% else if post.image %}           	
              <img class='indeximg {% if post.halfsize %}halfsize{%endif%}' src='{{post.image}}' style="border-top:0px solid #{{post.bgcolor}}">
            {% else %}
              <div class='genericimg' style="border-top:0px solid #{{post.bgcolor}}"></div>
@@ -19,8 +61,7 @@
           </div>
      {% endif %}
        
-       <div {% if post.bgcolor %}style='background-color:#{{post.bgcolor}}'{% endif %}  class='postinfo'><a href="{{ post.url }}#article">{{ post.title }}</a>&#8226;<span>{{ post.date | date_to_long_string }}</span></div>          
-
+       
        <div class='postcontent' {% if post.bgcolor %}style='background-color:#{{post.bgcolor}}'{% endif %}>
            <div class='innerpostcontent'>
                {% if post.shoutout %}

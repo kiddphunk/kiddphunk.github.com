@@ -9,7 +9,12 @@ tags:
 tools: [MacOSaiX, Photoshop]
 credits: [Helen Davis (source photo)]
 bgcolor: 100361
+iid: venosa
 image: http://kiddphunk.com/images/projects/venosa/detail.jpg
+parallaximage: /images/projects/venosa/venosa_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 topimage: http://kiddphunk.com/images/projects/venosa/poster_mini.jpg
 topimagelink: http://gigapan.com/gigapans/133068/
 bottomimage: http://kiddphunk.com/images/projects/venosa/detail2.jpg

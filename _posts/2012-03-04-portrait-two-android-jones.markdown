@@ -8,8 +8,13 @@ tags:
     - pixels
 tools: [MacOSaiX, Photoshop]
 credits: [Mario Covic (source photo)]
-bgcolor: 3c64b9
+bgcolor: cd2b07
+iid: android
 image: http://kiddphunk.com/images/projects/android/detail.jpg
+parallaximage: /images/projects/android/android_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 topimage: http://kiddphunk.com/images/projects/android/poster_mini.jpg
 topimagelink: http://gigapan.org/gigapans/97815/
 bottomimage: http://kiddphunk.com/images/projects/android/detail2.jpg

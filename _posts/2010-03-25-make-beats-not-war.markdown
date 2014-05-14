@@ -9,7 +9,12 @@ tags:
     - pixels
 tools: [Google Images, Photoshop]
 bgcolor: a60686
+iid: beatsnotwar
 image: http://kiddphunk.com/images/projects/robot/top.jpg
+parallaximage: /images/projects/robot/robot_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 topimage: http://kiddphunk.com/images/projects/robot/robot_mini.jpg
 topimagelink: http://kiddphunk.com/images/projects/robot/robot_large.jpg
 bottomimage: http://kiddphunk.com/images/projects/robot/robot_detail.jpg

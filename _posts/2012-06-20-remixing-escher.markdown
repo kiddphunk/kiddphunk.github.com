@@ -8,7 +8,12 @@ tags:
     - pixels
 tools: [Pixel Bender Toolkit]
 bgcolor: 323516
+iid: escher
 image: http://kiddphunk.com/images/projects/escher/escher.jpg
+parallaximage: /images/projects/escher/escher_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 topimage: http://kiddphunk.com/images/projects/escher/escher_mini.jpg
 bottomimage: http://kiddphunk.com/images/projects/escher/escherdetail.jpg
 shoutout: "Escher's natural recursion and geometric patterns meet a fractal remixing."

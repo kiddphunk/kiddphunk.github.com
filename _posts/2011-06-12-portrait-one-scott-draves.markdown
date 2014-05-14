@@ -10,9 +10,14 @@ tags:
 tools: [Perl, MacOSaiX, Photoshop]
 credits: [Jasmine Ceniceros (source photo)]
 bgcolor: 4d0a00
+iid: draves
 image: http://kiddphunk.com/images/projects/sheep/sheep.jpg
 topimage: http://kiddphunk.com/images/projects/sheep/dravesposter_mini.jpg
 topimagelink: http://gigapan.org/gigapans/79494/
+parallaximage: /images/projects/sheep/scott_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 bottomimage: http://kiddphunk.com/images/projects/sheep/sheepdetail.jpg
 topnote: "This is first in a series of posters I am creating that commemorate influential digital artists."
 shoutout: "The mosaic was generated from a selection of over 10,000 seed images; the sheep here are from Generation 243 and the poster is approximately 1 Gigapixel in size."

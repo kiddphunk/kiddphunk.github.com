@@ -9,7 +9,12 @@ tags:
 tools: [MacOSaiX, Photoshop]
 credits: [Tiana Hunter (model, muse)]
 bgcolor: 8f3a28
+iid: noevil
 image: http://www.kiddphunk.com/images/projects/noevil/detail.jpg
+parallaximage: /images/projects/noevil/noevil_parallax.png
+parallaxoffset: 0
+parallaxduration: 450
+parallaxpercent: 25
 topimage: http://www.kiddphunk.com/images/projects/noevil/poster_mini2.jpg
 topimagelink: http://www.kiddphunk.com/images/projects/noevil/poster_mini.jpg
 topimage2: http://www.kiddphunk.com/images/projects/noevil/poster2_mini2.jpg
