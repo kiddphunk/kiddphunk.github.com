@@ -12,8 +12,12 @@ tags:
     - datavis
 tools: [Perl, MacOSaiX, Photoshop]
 credits: [Jasmine Ceniceros (source photo)]
-bgcolor: 4d0a00
+bgcolor: 85375b
 image: http://kiddphunk.com/images/projects/sheep/sheep.jpg
+parallaximage: /images/projects/mandalabrot/mandalabrot_parallax.png
+parallaxoffset: 0
+parallaxduration: 800
+parallaxpercent: 50
 topimage: http://kiddphunk.com/images/projects/sheep/dravesposter_mini.png
 topimagelink: http://gigapan.org/gigapans/fullscreen/79494/
 bottomimage: http://kiddphunk.com/images/projects/sheep/sheepdetail.jpg

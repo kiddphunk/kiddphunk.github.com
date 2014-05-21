@@ -8,7 +8,7 @@ tags:
     - pixels
 tools: [MacOSaiX, Photoshop]
 credits: [Mario Covic (source photo)]
-bgcolor: cd2b07
+bgcolor: b71008
 iid: android
 image: http://kiddphunk.com/images/projects/android/detail.jpg
 parallaximage: /images/projects/android/android_parallax.png
