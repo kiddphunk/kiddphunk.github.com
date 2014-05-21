@@ -1184,6 +1184,7 @@ em {
   background-color: #fcfcfc;
 }
 #bpcl .postcontent {
+  margin-left:-4px;
 }
 #bpcl #footer {
   background: #ddd;
@@ -1192,7 +1193,7 @@ em {
   margin-top: 37px;
 }
 #bpcl .postinfo {
-  margin-right: -4px;
+  margin-right: 0;
 }
 #bpcl #header {
   background-color: #f5f5f5;
