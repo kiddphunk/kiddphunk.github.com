@@ -1185,15 +1185,13 @@ em {
 }
 #bpcl .postcontent {
   margin-left:-4px;
+  margin-right: 0;
 }
 #bpcl #footer {
   background: #ddd;
 }
 #bpcl .isoContent {
   margin-top: 37px;
-}
-#bpcl .postinfo {
-  margin-right: 0;
 }
 #bpcl #header {
   background-color: #f5f5f5;
@@ -1392,7 +1390,7 @@ em {
   .side2b, #bpcl
   .sideb, #bpcl
   .sidec, #bpcl .sideb, #bpcl .sidec {
-    background-color: #eee;
+    background-color: #fafafa;
   }
   #bpcl #header {
     border-left: 4px solid whiteSmoke;
