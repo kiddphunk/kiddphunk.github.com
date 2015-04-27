@@ -471,6 +471,12 @@ body {
   background-image: url(http://kiddphunk.com/images/bgFOL1.png);
   background-color: #fff;
   background-repeat: repeat;
+}
+.darkbody {
+  background-color: #333;
+  background-image: none !important;
+}
+
   /*    background-attachment:fixed;*/
 }
 

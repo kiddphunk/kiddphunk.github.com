@@ -22,6 +22,10 @@ time, mark, audio, video {
 body {
   line-height: 1;
 }
+.darkbody {
+  background: #333;
+  background-image: none !important;
+}
 
 ol, ul {
   list-style: none;

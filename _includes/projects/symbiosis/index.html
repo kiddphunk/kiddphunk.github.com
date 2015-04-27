@@ -1,0 +1,106 @@
+<div id="header">
+<center>
+<img src="/images/kiddphunk/header2.jpg"></li>
+</center>
+<h3>kiddphunk <span class='divider'>//</span> <span class='beats'>beats.</span> <span class='pixels'>pixels.</span> <span class='code'>code.</span> <span class='life'>life.</span>	
+</div>
+
+<body class='rootWrapper darkbody'>
+<link rel="stylesheet" type="text/css" href="/css/gallery/demo.css" />
+<link rel="stylesheet" type="text/css" href="/css/gallery/component.css" />
+
+<script src="/js/underscore-min.js"></script>
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/modernizr.custom.min.js"></script>
+<script src="/js/gallery/imagesloaded.pkgd.min.js"></script>
+<script src="/js/gallery/masonry.pkgd.min.js"></script>
+<script src="/js/gallery/classie.js"></script>
+<script src="/js/gallery/cbpGridGallery.js"></script>
+
+<style>
+body {
+  color: #aaa;
+  font-size: 12px;
+  font-family: "Raleway", "HelveticaNeue-Light", "Helvetica Neue", Helvetica,  "report-1","report-2", Arial, sans-serif;
+  /*
+    -webkit-user-select:none;
+      -webkit-text-size-adjust:none;    
+  */
+}
+
+.divider {
+  color: #666;
+}
+
+.beats {
+  color: #ff6600;
+}
+
+.pixels {
+  color: #ff0080;
+}
+
+.code {
+  color: #00aaea;
+}
+
+.life {
+  color: #00f300;
+}
+
+#bodyscreen {
+  background: url(http://kiddphunk.com/images/darkscreen.png);
+  background-attachment: fixed;
+  /*    background: #333;*/
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.darkbody {
+  background-color: #000;
+  background-image: none !important;
+}
+
+
+</style>
+
+<div class="container" id="bodyscreen">
+	<div id="grid-gallery" class="grid-gallery">
+		<section class="grid-wrap">
+			<ul class="grid">
+				<li class="grid-sizer"></li><!-- for Masonry column width -->
+				<li><figure><img src="/images/projects/symbiosis/gallery/large/0.jpg"/></figure></li>
+			</ul>
+		</section><!-- // grid-wrap -->
+		<section class="slideshow">
+			<ul>
+				<li><figure><img src="/images/projects/symbiosis/gallery/large/0.jpg"/></figure></li>			
+			</ul>
+			<nav>
+				<span class="icon nav-prev"></span>
+				<span class="icon nav-next"></span>
+				<span class="icon nav-close"></span>
+			</nav>
+			<div class="info-keys icon">Navigate with arrow keys</div>
+		</section><!-- // slideshow -->
+	</div><!-- // grid-gallery -->
+</div>
+<script>
+	vals = []
+	for (i=1; i<123; i++) 
+		vals.push(i);
+	console.log(vals)
+	vals = _.shuffle(vals)
+	for (i=0; i<122; i++) {
+		$('.grid-wrap ul')
+			.append('<li><figure><img src="/images/projects/symbiosis/gallery/large/'+vals[i]+'.jpg"/></figure></li>')
+		$('.slideshow ul')
+			.append('<li><figure><img src="/images/projects/symbiosis/gallery/large/'+vals[i]+'.jpg"/></figure></li>')
+	}
+	new CBPGridGallery( document.getElementById( 'grid-gallery' ) );
+</script>
+</body>
+
+
+
+
