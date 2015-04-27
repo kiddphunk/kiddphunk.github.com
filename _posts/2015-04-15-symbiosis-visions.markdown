@@ -1,6 +1,6 @@
 ---
 published: true
-title: test 1234
+title: symbiosis gathering
 layout: project
 category: projects
 tags:
@@ -17,8 +17,7 @@ parallaximage: /images/projects/symbiosis/symbiosis_parallax.png
 parallaxoffset: 0
 parallaxduration: 800
 parallaxpercent: 50
-topnote: "Combining my evolving mosaic technique with the results of a 'See no evil...' photoshoot Tiana and I had done."
-shoutout: "Three wise monkeys? She's a wise monkey!"
+shoutout: "10 years of collaborative magic"
 fbcomments: true
 share: true
 ---
