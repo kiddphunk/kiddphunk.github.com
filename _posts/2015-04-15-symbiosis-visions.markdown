@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: symbiosis gathering
 layout: project
 category: projects
@@ -17,7 +17,7 @@ parallaximage: /images/projects/symbiosis/symbiosis_parallax.png
 parallaxoffset: 0
 parallaxduration: 800
 parallaxpercent: 50
-shoutout: "10 years of collaborative magic"
+shoutout: "Celebrating 10 years of collaborative magic"
 fbcomments: true
 share: true
 ---

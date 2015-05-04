@@ -252,6 +252,15 @@ span.nav-close:before {
 	content: "\e604";
 }
 
+
+/*.slideshow figure {
+	padding:100px;
+	background: rgba(0,0,0,.8);
+	.img {
+	  border: 50px solid black;
+	}
+}
+*/
 /* Example media queries (reduce number of columns and change slideshow layout) */
 
 @media screen and (max-width: 60em) {
@@ -284,16 +293,36 @@ span.nav-close:before {
 		display: none;
 	}
 
-}
+
+/*	  .slideshow figure {
+  	    background: rgba(0,0,0,.8);
+  	    .img {
+  	      border: 50px solid black;
+  	    }
+  	  }
+*/}
 
 @media screen and (max-width: 35em) {
-	.grid li {
-		width: 50%;
-	}
-}
+  	.grid li {
+  		width: 50%;
+  	}
+/*	  .slideshow figure {
+  	    background: rgba(0,0,0,1);
+  	    .img {
+  	      border: 10px solid black;
+  	    }
+  	  }
+*/}
 
 @media screen and (max-width: 24em) {
-	.grid li {
-		width: 100%;
-	}
-}
+  	.grid li {
+  		width: 100%;
+  	}
+/*	  .slideshow figure {
+  	    background: rgba(0,0,0,1);
+  	    .img {
+  	      border: 10px solid black;
+  	    }
+  	  }
+*/}
+
