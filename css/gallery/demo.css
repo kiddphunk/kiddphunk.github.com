@@ -19,8 +19,20 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 .clearfix:after { clear: both; }
 
 body {
-    font-family: 'Lato', Calibri, Arial, sans-serif;
-    color: #47a3da;
+  background: #000;
+  font-family: "Raleway", "HelveticaNeue-Light", "Helvetica Neue", Helvetica,  "report-1","report-2", Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  text-decoration: none;
+  font-weight: normal;
+  font-family: 'Raleway', "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;  
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 25px;
+  margin-left: 20px;
 }
 
 a {

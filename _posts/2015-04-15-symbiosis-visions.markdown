@@ -1,14 +1,14 @@
 ---
-published: false
-title: symbiosis gathering
+published: true
+title: symbiosis visions
 layout: project
 category: projects
 tags:
     - blog
     - pixels
-tools: [MacOSaiX, Photoshop]
+tools: [Photoshop]
 credits: []
-bgcolor: 8f3a28
+bgcolor: 3c9bd2
 bodyclass: darkbody
 iid: symbiosis
 fullscreen: true
@@ -21,14 +21,3 @@ shoutout: "Celebrating 10 years of collaborative magic"
 fbcomments: true
 share: true
 ---
-<img class='feedimg' src='{{page.topimage}}'>
-
-This was my contribution to this year's Chillin' Productions Holiday Art Show, held at 111 Minna in San Francisco.
-
-<img  src='http://www.kiddphunk.com/images/projects/noevil/gallery.jpg' title='hear no evil'>
-
-Another from the series:
-
-<img class='fullimage' src='{{page.topimage2}}' title='hear no evil'>
-
-
