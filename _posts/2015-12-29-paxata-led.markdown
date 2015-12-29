@@ -11,7 +11,7 @@ credits: [M.C. Escher (source portrait)]
 bgcolor: 333333
 iid: vernon
 image: http://kiddphunk.com/images/projects/vernon/detail.jpg
-parallaximage: /images/projects/vernon/vernon_parallax.png
+parallaximage: /images/projects/paxled/paxled_parallax.png
 parallaxoffset: 0
 parallaxduration: 800
 parallaxpercent: 50
