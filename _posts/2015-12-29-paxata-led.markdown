@@ -47,22 +47,21 @@ Our company's logo was a perfect shape and complexity for a first-project, and t
 
 <img src="/images/projects/paxled/paxata_logo.png"/>
 
-<p>
-I settled upon one-light-per-circle in the outer circles, with a dense <a href='https://en.wikipedia.org/wiki/Phyllotaxis'>phyllotaxis</a> pattern in the center (a la sunflowers):
-</p>
-
-<img src="/images/projects/paxled/phyllotaxis.png"/>
-
-<b>TL;DR final result:</b>
-
+<b>TL;DR final result</b>
 
 <div class='topnote'>
     <img style='transform:rotate(180deg);background-size: cover; width: 702px;margin-left: -252px;'  src="/images/projects/paxled/process/Untitled3.gif"/>
     <p>My desk is now officially ready for parties! </p>
 </div>
 
+<b>Here is a quick glimpse into the creation process</b>
 
-<b>Here is a quick glimpse into the creation process.</b>
+<p>
+I settled upon one-light-per-circle in the outer circles, with a dense <a href='https://en.wikipedia.org/wiki/Phyllotaxis'>phyllotaxis</a> pattern in the center (a la sunflowers):
+</p>
+
+<img src="/images/projects/paxled/phyllotaxis.png"/>
+
 
 
 <!-- <img style='margin-left:-30px;background-size: cover;width: 100%;' src="/images/projects/paxled/process/collage1.png"/> -->
