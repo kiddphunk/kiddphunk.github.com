@@ -62,7 +62,7 @@ I settled upon one-light-per-circle in the outer circles, with a dense <a href='
 
 <img src="/images/projects/paxled/phyllotaxis.png"/>
 
-
+I found reflective steel containers online in the correct diameters and drilled holes in them for each single LED.
 
 <!-- <img style='margin-left:-30px;background-size: cover;width: 100%;' src="/images/projects/paxled/process/collage1.png"/> -->
 
@@ -70,11 +70,15 @@ I settled upon one-light-per-circle in the outer circles, with a dense <a href='
 <div id='img2' class="parallax-window" data-parallax="scroll" data-image-src="/images/projects/paxled/process/ejRc6.jpeg"></div>
 
 <div class='topnote'>
-    <p>I found reflective steel containers online in the correct diameters and drilled holes in them for each single LED.</p>
+    <p>Thinking of how nicely these should reflect light.</p>
 </div>
 
 <div id='img11' class="parallax-window" data-parallax="scroll" data-image-src="/images/projects/paxled/process/IMG_4454.JPG"></div>
 
+
+<div class='topnote'>
+    <p>Holes cut.</p>
+</div>
 
 <div id='img6' class="parallax-window" data-parallax="scroll" data-image-src="/images/projects/paxled/process/IMG_3409.JPG"></div>
 
@@ -107,6 +111,8 @@ I used my <a href='http://cricut.com'>Cricut</a> cutting machine for the perfect
     <p>Circles cut, ready for eventual superglue.</p>
 </div>
 
+
+The inner circle presented its own set of challenges, from a physical production perspective to the eventual programming logic, but I knew it would be worth it for the extra 'resolution' that would be so crucial for animation later.
 
 
 <div id='img7' class="parallax-window" data-parallax="scroll" data-image-src="/images/projects/paxled/process/IMG_3440.JPG"></div>
