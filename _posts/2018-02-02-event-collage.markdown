@@ -18,7 +18,7 @@ parallaxoffset: 0
 parallaxduration: 800
 parallaxpercent: 50
 bottomimage: /images/projects/events/detail2.jpg
-shoutout: "Displaying over a decade's worth of Bay Area event and festival flyers."
+shoutout: "Displaying over a decade of Bay Area event and festival flyers."
 fbcomments: true
 share: true
 ---
