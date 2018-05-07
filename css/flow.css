@@ -58,7 +58,7 @@ pre code {
 
 a img {
   background: none;
-  border: solid 2px #138fe2;
+  border: dashed 2px #138fe2;
   padding: 2px;
   margin-left: -4px;
 }
