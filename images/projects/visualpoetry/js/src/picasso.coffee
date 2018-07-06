@@ -97,10 +97,11 @@ Let me recite what history teaches.
 History teaches. 
 """
 
-$("#picasso_poem") .live 'click', ->
-    poem = poem.replace /\n/g, '<br>'
-    $("#picasso_poem").html "<tt>#{poem}</tt>"
-    $("#picasso_poem").removeClass 'link'
+_.defer ->
+    $("#picasso_poem") .on 'click', ->
+        poem = poem.replace /\n/g, '<br>'
+        $("#picasso_poem").html "<tt>#{poem}</tt>"
+        $("#picasso_poem").removeClass 'link'
     
     
     
