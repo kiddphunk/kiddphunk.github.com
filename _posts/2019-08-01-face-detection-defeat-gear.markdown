@@ -1,6 +1,6 @@
 ---
 published: true
-title: Urban Camouflage
+title: urban camouflage fashion
 layout: project
 category: projects
 tags:

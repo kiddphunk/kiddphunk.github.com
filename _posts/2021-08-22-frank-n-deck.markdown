@@ -1,6 +1,6 @@
 ---
 published: true
-title: Frank N. Deck's Designer Frankendecks (vol.1)
+title: frank n. deck's designer frankendecks (vol.1)
 layout: project
 category: projects
 tags:
