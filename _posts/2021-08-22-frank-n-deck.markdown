@@ -19,7 +19,7 @@ parallaxduration: 800
 parallaxpercent: 50
 bottomimage: /images/projects/frankndeck/detail2.jpg
 shoutout: "Black & White. Magic & Mystery. Mandalas. Mysticism & Occult Symbology. Skulls."
-fbcomments: false
+fbcomments: true
 share: true
 ---
 
