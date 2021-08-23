@@ -1,6 +1,6 @@
 ---
 published: true
-title: Urban False-Face Camouflage
+title: Urban Camouflage
 layout: project
 category: projects
 tags:
