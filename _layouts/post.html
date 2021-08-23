@@ -23,7 +23,7 @@ layout: flow
               {% endif %}
 
             <a name='article' id='article'></a>
-            <div {% if page.bgcolor %}style='background-color:#{{page.bgcolor}}'{% endif %}  class='postinfo {% if page.image %}nongeneric{% else %}generic{% endif %}'><a href="{{ page.url }}">{{ page.title }}</a>{% if page.date %}&#8226;<span>{{ page.date | date_to_long_string }}</span>{% endif %}{% if page.altdate %}&#8226;<span>{{ page.altdate }}</span>{% endif %}</div>          
+            <div {% if page.bgcolor %}style='background-color:#{{page.bgcolor}}'{% endif %}  class='postinfo {% if page.image %}nongeneric{% else %}generic{% endif %}'><a href="{{ page.url }}">{{ page.title }}</a>{% if page.date %}&#8226;<span>{{ page.date | date_to_long_string }}</span>{% endif %}{% if page.altdate %}&#8226;<span>{{ page.altdate }}</span>{% endif %}</div>
             <div class='postcontent' {% if page.bgcolor %}style='background-color:#{{page.bgcolor}}'{% endif %}>
                 <div class='innerpostcontent'>
                     <div class="container showgrid2">
@@ -32,18 +32,19 @@ layout: flow
 
 
 
-	
+
 				{% if page.fbcomments %}
 					<p></p>
 
 				<hr>
 	                    <div class="prepend-7 span-10 last">
 							<h1>
-								<fb:comments-count href={{site.commenturl}}{{page.url}}></fb:comments-count> comments 
+								<fb:comments-count href={{site.commenturl}}{{page.url}}></fb:comments-count> comments
 							</h1>
 						</div>
 				<hr>
 				<div id="fb-root"></div>
+
 				<script>(function(d, s, id) {
 				  var js, fjs = d.getElementsByTagName(s)[0];
 				  if (d.getElementById(id)) {return;}
@@ -64,7 +65,7 @@ layout: flow
                     	{% endif %}
                     </div>
                 </div>
-            </div>          
+            </div>
 
           </li>
       </ul>
@@ -83,9 +84,3 @@ layout: flow
 <div id="footer">
         {% include common/footer.html %}
 </div>
-
-
-
-
-
-
