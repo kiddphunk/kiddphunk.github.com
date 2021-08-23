@@ -1,6 +1,6 @@
 ---
 published: true
-title: Frank N. Deck's Designer Frankendecks (vol.1)
+title: Frank N. Deck's Designer Frankendecks (FND:MONO)
 layout: project
 category: projects
 tags:
@@ -8,7 +8,7 @@ tags:
     - pixels
     - life
 tools: [x-acto knife, playing cards, photoshop]
-credits: [Various talented artists]
+credits: [Various talented designers]
 bgcolor: 333946
 iid: frankndeck
 fullscreen: false
@@ -51,13 +51,13 @@ The first series is FND:MONO.
 <i>Black & White. Magic & Mystery. Mandalas. Mysticism & Occult Symbology. Skulls.</i>
 
 
-<h1>The details: </h1>
+<h1>The details </h1>
 
 Each series will be expressly limited to 53 Frankendecks, and each Frankendeck package will contain:
 
 
 <h1>1) Cards</h1>
-A curated designer frankendeck with 53 different back designs, a color gaffe card, and a custom joker card and ad card featuring a customized FND:MONO back design.
+A curated designer frankendeck with 53 different back designs, a color gaffe card, and joker and ad cards that feature the customized FND:MONO back design.
 
 <a href='/images/projects/frankndeck/wall.jpg'>
     <img style='width:100%' src='/images/projects/frankndeck/wall.jpg'/></a>
@@ -95,6 +95,9 @@ A deluxe hardbound book documents all of the 53 customized cards in the FND:MONO
 <h1>4) Tuckbox + Postcard </h1>
 The customized FND card back design is carried over into a larger postcard, as
 well as the tuckbox and the tuckbox seal.
+
+<a href='/images/projects/frankndeck/tuck.jpg'>
+    <img style='width:100%' src='/images/projects/frankndeck/tuck.jpg'/></a>
 
 <a href='/images/projects/frankndeck/13.jpg'>
     <img style='width:100%' src='/images/projects/frankndeck/13.jpg'/></a>
