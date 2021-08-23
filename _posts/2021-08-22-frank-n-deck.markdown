@@ -1,6 +1,6 @@
 ---
 published: true
-title: Frank N. Deck's Designer Frankendecks (FND:MONO)
+title: Frank N. Deck's Designer Frankendecks (vol.1)
 layout: project
 category: projects
 tags:
