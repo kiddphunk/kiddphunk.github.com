@@ -32,7 +32,7 @@ In particular I was fascinated by the
 
 <p></p>
 
-<a href='/images/projects/AIdefeat/JACKET.JPG'><img style='width:100%' src='/images/projects/AIdefeat/scarf_detections_960.jpg'/></a>
+<a href='/images/projects/AIdefeat/scarf_detections_960.jpg'><img style='width:100%' src='/images/projects/AIdefeat/scarf_detections_960.jpg'/></a>
 
 I then recreated similar randomly-generated fractally-scaled facial patterns using one of my go-to  creativity tools [contextfree](http://contextfreeart.org).
 
