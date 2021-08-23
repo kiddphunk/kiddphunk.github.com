@@ -40,6 +40,6 @@ I then recreated similar randomly-generated fractally-scaled facial patterns usi
 
 <a href='/images/projects/AIdefeat/facetile_mono.png'><img style='width:100%' src='/images/projects/AIdefeat/facetile_mono.png'/></a>
 
-Finally I used the online custom fabric-printing / clothing-design service [Contrado.com](https://contrado.com) to create a slick hoodie with my personalized urban camo pattern.
+Finally I used the online custom fabric-printing / clothing-design service [Contrado.com](https://contrado.com) to create a slick hoodie with my personalized urban camo pattern. <i>Side note: it was unbelievably quick-and-easy to create this multi-fabric design using Contrado - highly recommended!</i>
 
 <a href='/images/projects/AIdefeat/JACKET.JPG'><img style='width:100%' src='/images/projects/AIdefeat/JACKET.JPG'/></a>
